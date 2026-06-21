@@ -1,0 +1,40 @@
+# === SEKRETY (NIGDY do repo) ===
+dostepy.md
+credentials.json
+token.json
+*.env
+.env*
+*token*.json
+*secret*
+
+# === zależności ===
+node_modules/
+
+# === ciężkie binaria / dane klienta (regenerowalne lub lokalne) ===
+*.xlsx
+*.docx
+*.pdf
+*.zip
+*.gz
+*.png
+*.jpg
+*.jpeg
+*.webp
+
+# === logi / tmp / cache ===
+*.log
+playwright-tmp/
+tmp-docx-iter1/
+sm-*.raw
+sitemap*.xml
+sitemap*.xml.gz
+sitemap-root.xml
+
+# === wielkie surowe raporty (regenerowalne) ===
+_raport-poradniki.tsv
+_raport-pytania.tsv
+
+# tooling / junctiony skilli
+.claude/
+seo-tracker/
+linkbuilding/

@@ -1,0 +1,294 @@
+{
+ "1. Pokój dziecka i nastolatka||Łóżka bajkowe / z grafiką": [
+  {
+   "n": "160x80",
+   "p": "160x80",
+   "v": "10k",
+   "k": "full"
+  },
+  {
+   "n": "140x70",
+   "p": "140x70",
+   "v": "1k",
+   "k": "filtr"
+  },
+  {
+   "n": "z barierką",
+   "p": "barierk",
+   "v": "9.7k",
+   "k": "full"
+  },
+  {
+   "n": "z szufladą",
+   "p": "szuflad",
+   "v": "10k",
+   "k": "full"
+  },
+  {
+   "n": "z materacem",
+   "p": "z-materac",
+   "v": "20k",
+   "k": "full"
+  },
+  {
+   "n": "Łóżko dla dziewczynki",
+   "p": "dziewczynk|rozow",
+   "v": "28k",
+   "k": "full"
+  },
+  {
+   "n": "Łóżko auto / traktor",
+   "p": "auto|traktor|samochod|policja",
+   "v": "1.6k",
+   "k": "filtr"
+  }
+ ],
+ "5. Sypialnia||Komody": [
+  {
+   "n": "Komoda dąb / artisan",
+   "p": "dab|artisan",
+   "v": "12k",
+   "k": "full"
+  },
+  {
+   "n": "Komoda biała",
+   "p": "bial",
+   "v": "41k",
+   "k": "full"
+  },
+  {
+   "n": "Komoda czarna",
+   "p": "czarn",
+   "v": "7.8k",
+   "k": "full"
+  },
+  {
+   "n": "Komoda loft",
+   "p": "loft",
+   "v": "1.6k",
+   "k": "filtr"
+  },
+  {
+   "n": "Komoda na nóżkach",
+   "p": "nogi|nozk",
+   "v": "2.5k",
+   "k": "filtr"
+  },
+  {
+   "n": "Komoda ryflowana",
+   "p": "ryflowan",
+   "v": "5.2k",
+   "k": "filtr"
+  }
+ ],
+ "5. Sypialnia||Szafki nocne": [
+  {
+   "n": "Szafka nocna biała",
+   "p": "bial",
+   "v": "9.8k",
+   "k": "full"
+  }
+ ],
+ "5. Sypialnia||Materace": [
+  {
+   "n": "Materac kieszeniowy",
+   "p": "kieszeniow",
+   "v": "2.6k",
+   "k": "filtr"
+  }
+ ],
+ "6. Salon i jadalnia||Szafki RTV": [
+  {
+   "n": "RTV dąb",
+   "p": "dab|artisan",
+   "v": "3.5k",
+   "k": "full"
+  },
+  {
+   "n": "RTV biała",
+   "p": "bial",
+   "v": "6.2k",
+   "k": "full"
+  },
+  {
+   "n": "RTV czarna",
+   "p": "czarn",
+   "v": "4.9k",
+   "k": "full"
+  },
+  {
+   "n": "RTV z półkami / wisząca",
+   "p": "polk|wiszac",
+   "v": "12k",
+   "k": "full"
+  }
+ ],
+ "6. Salon i jadalnia||Stoliki kawowe / ławy": [
+  {
+   "n": "Stolik okrągły",
+   "p": "okragl",
+   "v": "41k",
+   "k": "full"
+  },
+  {
+   "n": "Stolik dąb",
+   "p": "dab|artisan",
+   "v": "16k",
+   "k": "full"
+  },
+  {
+   "n": "Stolik marmur",
+   "p": "marmur",
+   "v": "9.7k",
+   "k": "filtr"
+  },
+  {
+   "n": "Zestaw stolików",
+   "p": "zestaw",
+   "v": "1.4k",
+   "k": "filtr"
+  },
+  {
+   "n": "Ława do salonu",
+   "p": "lawa",
+   "v": "41k",
+   "k": "full"
+  },
+  {
+   "n": "Stolik czarny",
+   "p": "czarn",
+   "v": "16k",
+   "k": "full"
+  }
+ ],
+ "6. Salon i jadalnia||Stoły jadalniane": [
+  {
+   "n": "Stół okrągły",
+   "p": "okragl",
+   "v": "72k",
+   "k": "full"
+  },
+  {
+   "n": "Stół rozkładany",
+   "p": "rozkladan",
+   "v": "44k",
+   "k": "filtr"
+  },
+  {
+   "n": "Stół marmur",
+   "p": "marmur",
+   "v": "1.9k",
+   "k": "filtr"
+  },
+  {
+   "n": "Stół dąb",
+   "p": "dab|artisan",
+   "v": "4.5k",
+   "k": "full"
+  }
+ ],
+ "6. Salon i jadalnia||Kanapy / narożniki / sofy": [
+  {
+   "n": "Z funkcją spania",
+   "p": "spania|funkcja",
+   "v": "162k",
+   "k": "full"
+  },
+  {
+   "n": "Narożnik",
+   "p": "naroznik",
+   "v": "54k",
+   "k": "full"
+  }
+ ],
+ "6. Salon i jadalnia||Fotele / pufy": [
+  {
+   "n": "Zestaw puf",
+   "p": "puf",
+   "v": "1.8k",
+   "k": "filtr"
+  }
+ ],
+ "2. Strefa nauki i pracy (biuro)||Biurka dziecięce i proste": [
+  {
+   "n": "Biurko komputerowe",
+   "p": "komputerow",
+   "v": "8.1k",
+   "k": "full"
+  },
+  {
+   "n": "Biurko z szufladami",
+   "p": "szuflad",
+   "v": "6.9k",
+   "k": "full"
+  },
+  {
+   "n": "Biurko białe",
+   "p": "bial",
+   "v": "18k",
+   "k": "full"
+  },
+  {
+   "n": "Biurko dąb",
+   "p": "dab|artisan",
+   "v": "5.1k",
+   "k": "full"
+  }
+ ],
+ "6. Salon i jadalnia||Regały": [
+  {
+   "n": "Regał na książki",
+   "p": "ksiazk",
+   "v": "3.7k",
+   "k": "full"
+  },
+  {
+   "n": "Regał na zabawki",
+   "p": "zabawk|loni",
+   "v": "15k",
+   "k": "filtr"
+  },
+  {
+   "n": "Regał biały",
+   "p": "bial",
+   "v": "1.1k",
+   "k": "filtr"
+  }
+ ],
+ "7. Łazienka i kuchnia (zabudowa)||Zabudowa łazienka/kuchnia (szafki, słupki, blaty)": [
+  {
+   "n": "Szafka pod umywalkę",
+   "p": "umywalk",
+   "v": "12k",
+   "k": "full"
+  },
+  {
+   "n": "Słupek łazienkowy",
+   "p": "slupek",
+   "v": "8.4k",
+   "k": "full"
+  },
+  {
+   "n": "Blat roboczy",
+   "p": "blat",
+   "v": "26k",
+   "k": "full"
+  }
+ ],
+ "1. Pokój dziecka i nastolatka||Łóżka podwójne / dla rodzeństwa": [
+  {
+   "n": "Łóżko z pojemnikiem",
+   "p": "pojemnik",
+   "v": "37k",
+   "k": "full"
+  }
+ ],
+ "5. Sypialnia||Garderoby": [
+  {
+   "n": "Garderoba na wymiar",
+   "p": "garderob|veno|malmo",
+   "v": "18k",
+   "k": "full"
+  }
+ ]
+}

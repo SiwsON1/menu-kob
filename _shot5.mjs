@@ -1,0 +1,16 @@
+import pw from 'file:///C:/Users/mahin/.claude/skills/playwright-skill/node_modules/playwright/index.js';
+const { chromium } = pw;
+const file='file:///D:/cursor/netim-seo-os/klienci/kobi-meble/strategia/mega-menu-FINAL-2026-06-19.html';
+const b=await chromium.launch();
+const p=await b.newPage({viewport:{width:1440,height:1000}});
+await p.goto(file,{waitUntil:'domcontentloaded'});await p.waitForTimeout(1000);
+await p.evaluate(()=>{const t=[...document.querySelectorAll('.branch-h')].find(x=>x.textContent.includes('Strefa nauki'));if(t)t.click();});
+await p.waitForTimeout(300);
+await p.evaluate(()=>{const t=[...document.querySelectorAll('.leaf')].find(x=>x.textContent.includes('Biurka dziecięce'));if(t)t.click();});
+await p.waitForTimeout(400);
+const chips=await p.evaluate(()=>[...document.querySelectorAll('.chip')].map(c=>c.textContent.replace(/\s+/g,' ').trim()));
+const stat=await p.evaluate(()=>[...document.querySelectorAll('.stat')].map(s=>s.textContent.replace(/\s+/g,' ').trim()));
+console.log('Statystyki:',JSON.stringify(stat));
+console.log('Chipy Biurka:',JSON.stringify(chips));
+await p.screenshot({path:'playwright-tmp/megamenu-v2.png'});
+await b.close();

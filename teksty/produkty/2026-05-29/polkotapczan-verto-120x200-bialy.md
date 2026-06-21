@@ -1,0 +1,34 @@
+## Półkotapczan VERTO 120x200 biały
+
+**Pełnowymiarowe łóżko 120x200 cm, które w ciągu dnia składasz pionowo, tak że przybiera formę eleganckiej szafy o głębokości zaledwie 40 cm. Wieczorem rozkładasz je w kilka sekund i jedną ręką, bo cały ciężar podnoszenia przejmują siłowniki gazowe. To rozwiązanie dla osób, które mają mało miejsca, a mimo to chcą spać wygodnie, na pełnym łóżku, zamiast na rozkładanej kanapie.**
+
+## Komfort snu czy wolna przestrzeń? Nie musisz wybierać
+
+Marzysz o wygodnym łóżku, ale w pokoju brakuje miejsca? VERTO rozwiązuje ten dylemat. W nocy rozkładasz pełnowymiarowe łóżko 120x200 cm, szersze i wygodniejsze niż klasyczne pojedyncze. Rano składasz je pionowo, a wtedy zajmuje przy ścianie mniej więcej tyle miejsca co szafa, więc środek pokoju znów jest wolny na biurko, naukę albo zabawę. Po złożeniu mebel wygląda jak minimalistyczna zabudowa ścienna, a nie jak schowane łóżko.
+
+## Najważniejsze: rozłożysz je w kilka sekund
+
+Cała wygoda VERTO bierze się z łatwości obsługi. W podnoszeniu wyręczają Cię siłowniki gazowe z mechaniczną blokadą, więc otwierasz i składasz łóżko jednym ruchem, w kilka sekund, bez szarpania i bez siłowania się. Pościel zostaje w środku, bo przytrzymują ją pasy, dzięki czemu rano po prostu zamykasz mebel i nie musisz ścielić go wieczorem od nowa. Regulowane nóżki pozwalają ustawić łóżko stabilnie nawet na nierównej podłodze. Półkotapczan przykręca się do ściany nośnej, a komplet zaczepów dostajesz w zestawie.
+
+## Wymiary i wykonanie
+
+Po złożeniu VERTO ma 211 cm wysokości, 133 cm szerokości i tylko 40 cm głębokości, więc przy ścianie wygląda jak smukła szafa. Po rozłożeniu sięga około 213 cm w głąb pokoju i daje powierzchnię spania 120x200 cm. Korpus jest z płyty meblowej laminowanej o grubości 18 mm i z płyty HDF, a całość wzmacnia metalowa rama. Materac dobierasz osobno, do wysokości około 20 cm. Oprócz bieli VERTO występuje w wykończeniach Dąb Artisan, Szary i Kaszmir.
+
+## Najczęstsze pytania o półkotapczan VERTO 120x200
+
+**Czy trudno go rozłożyć?**
+Nie. Ciężar podnoszenia biorą na siebie siłowniki gazowe, więc składasz i rozkładasz łóżko jedną ręką, w kilka sekund, bez wysiłku.
+
+**Dla ilu osób jest spanie 120x200?**
+Dla jednej osoby, wygodnie i z zapasem. Jest szersze niż klasyczne łóżko pojedyncze. Jeśli szukasz spania dla dwojga, wybierz wariant 160x200.
+
+**Czy pościel zostaje w środku po złożeniu?**
+Tak. Kołdrę i poduszkę przytrzymują pasy, więc nie musisz ich zdejmować przy składaniu.
+
+**Czy materac jest w zestawie?**
+Nie, dobierasz go osobno, do wysokości około 20 cm, więc sam decydujesz o twardości.
+
+**Jaki jest czas dostawy i gwarancja?**
+Wysyłamy zwykle w 3 do 5 dni roboczych, a mebel obejmuje 24 miesiące gwarancji polskiego producenta.
+
+**Zamów półkotapczan VERTO 120x200, jeśli w pokoju liczy się każdy metr podłogi, a mimo to zależy Ci na wygodnym, pełnym łóżku dla jednej osoby.** Potrzebujesz spania dla dwojga? Zobacz wariant 160x200 w kategorii [półkotapczany](https://meblekobi.pl/pl/menu/polkotapczany-624.html).

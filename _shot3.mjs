@@ -1,0 +1,17 @@
+import pw from 'file:///C:/Users/mahin/.claude/skills/playwright-skill/node_modules/playwright/index.js';
+const { chromium } = pw;
+const file='file:///D:/cursor/netim-seo-os/klienci/kobi-meble/strategia/mega-menu-FINAL-2026-06-19.html';
+const b=await chromium.launch();
+const p=await b.newPage({viewport:{width:1440,height:1000}});
+await p.goto(file,{waitUntil:'domcontentloaded'});
+await p.waitForTimeout(1000);
+await p.evaluate(()=>{const t=[...document.querySelectorAll('.branch-h')].find(x=>x.textContent.includes('Salon'));if(t)t.click();});
+await p.waitForTimeout(300);
+await p.evaluate(()=>{const t=[...document.querySelectorAll('.leaf')].find(x=>x.textContent.includes('Stoły'));if(t)t.click();});
+await p.waitForTimeout(300);
+const before=await p.evaluate(()=>document.querySelectorAll('#plist .pcard').length);
+await p.evaluate(()=>{const t=[...document.querySelectorAll('.chip')].find(x=>x.textContent.includes('okrągły'));if(t)t.click();});
+await p.waitForTimeout(300);
+const after=await p.evaluate(()=>document.querySelectorAll('#plist .pcard').length);
+console.log('Stoły wszystkie:',before,'| po filtrze okrągły:',after);
+await b.close();
