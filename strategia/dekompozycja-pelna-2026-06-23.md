@@ -104,6 +104,7 @@ Próg: ✅ pełna podkat. = ≥5 prod. i ≥500/mc · ◑ filtr = ≥3 prod. i �
 | regulowane | 18 | 9900 | biurko regulowane | ✅ |
 | z szufladą | 32 | 6600 | biurka z szufladami | ✅ |
 | komputerowe | 37 | 6600 | biurka komputerowe | ✅ |
+| z nadstawką | 8 | 5400 | biurko z nadstawką | ✅ |
 | czarne | 15 | 3600 | biurko czarny | ✅ |
 | skandynawskie | 5 | 3600 | biurko skandynawskie | ✅ |
 | dąb | 30 | 2900 | biurko dąb sonoma | ✅ |
