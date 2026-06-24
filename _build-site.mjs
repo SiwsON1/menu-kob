@@ -62,6 +62,11 @@ const T=[
  ]},
 ];
 
+// pełna dekompozycja podkategorii (z _decompose-all.mjs)
+const DEC=JSON.parse(fs.readFileSync('strategia/subcats-all.json','utf8'));
+const DKMAP={'Łóżka dziecięce':'Łóżka dziecięce','Łóżka piętrowe':'Łóżka piętrowe','Łóżka młodzieżowe':'Łóżka młodzieżowe','Łóżka podwójne':'Łóżka podwójne','Komody':'Komody','Szafki nocne':'Szafki nocne','Szafki RTV':'Szafki RTV','Biurka':'Biurka','Stoły do jadalni':'Stoły','Stoliki kawowe i ławy':'Stoliki kawowe / ławy','Krzesła do jadalni':'Krzesła','Kanapy i narożniki':'Kanapy / narożniki','Fotele':'Fotele / pufy','Pufy':'Fotele / pufy','Regały':'Regały','Regały na zabawki':'Regały','Materace':'Materace','Toaletki':'Toaletki','Meble łazienkowe na wymiar':'Meble łazienkowe','Szafki na buty':'Szafki na buty','Szafy dziecięce':'Szafy / garderoby','Garderoby':'Szafy / garderoby'};
+function subsFor(cat){const dk=DKMAP[cat.n];if(dk&&DEC[dk]&&DEC[dk].length)return DEC[dk].map(s=>({n:s.n,ph:s.ph,v:s.v,re:s.re}));return (cat.subs||[]).map(s=>({n:s.n,ph:s.ph,v:s.v,re:s.s.join('|')}));}
+
 // "MEBLE" = pierwsze wejście: wszystkie typy A-Z (jak meble.pl). Pokoje zostają jako drugi sposób.
 const allCats=[];const seenN=new Set();
 for(const br of T) for(const c of br.cats){ if(!seenN.has(c.n)){seenN.add(c.n);allCats.push(c);} }
@@ -79,7 +84,7 @@ for(const [bi,br] of T.entries()){
   for(const cat of br.cats){
     const prods=pick(cat.b,cat.s);prods.forEach(p=>{if(!seen.has(p.url)){seen.add(p.url);totalProd++;}});
     const key=br.br+'||'+cat.n;
-    DATA[key]={ph:cat.ph,v:cat.v,prods:prods.map(p=>({u:p.url,s:p.slug})),subs:(cat.subs||[]).map(s=>({n:s.n,ph:s.ph,v:s.v,re:s.s.join('|')}))};
+    DATA[key]={ph:cat.ph,v:cat.v,prods:prods.map(p=>({u:p.url,s:p.slug})),subs:subsFor(cat)};
     cards+=`<button class="mcat" data-key="${esc(key)}"><span class="mn">${esc(cat.n)}</span><span class="mm"><span class="mv">${fmt(cat.v)}/mc</span><span class="mc">${prods.length}</span></span></button>`;
   }
   megas+=`<div class="mega" data-mega="${bi}"><div class="mega-inner"><div class="mega-head">${esc(br.br)}<span>wybierz kategorię</span></div><div class="mgrid">${cards}</div></div></div>`;
