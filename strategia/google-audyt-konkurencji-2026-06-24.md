@@ -59,3 +59,20 @@ Osie: **po płci (dla chłopca/dziewczynki)**, styl skandynawski/industrialny, *
 - Oś „skandynawskie" do: Łóżka domki, Regały dziecięce (gdzie ≥5 prod.).
 - Flaga LUKA dla klienta: segment niemowlęcy (przewijaki/komody z przewijakiem/łóżeczka niemowlęce).
 - Sprawdzić „z nadstawką" w biurkach, motyw chmurka/drzewko w półkach.
+
+## Partia 2 (stoły, krzesła, narożniki, nocne, garderoby, ogród) — 2026-06-24
+Potwierdzone osie (mamy je w dekompozycji): stoły okrągłe/rozkładane (meble.pl, sfmeble), krzesła
+welurowe/tapicerowane (sfmeble, home-design24), narożniki z funkcją spania (mononi, abra, bromarkt),
+szafki nocne fasetowo po kolorze+drewno (meble.pl `/szafki-nocne,drewno,kolor-bialy`), garderoby/szafy
+dziecięce (gugi, meblik, idzczak), ogród technorattan (twojasiesta, BRW `/material-technorattan`).
+
+Sprawdzone potencjalne nowe osie — werdykt po danych:
+- narożnik lewy/prawy: 15/15 produktów otagowanych → to FILTR konfiguracji (każdy jest L lub P), nie osobna kategoria.
+- szafy 2-/3-drzwiowe: 7/3 → marginalne, nie robić osobno.
+- ogród technorattan/aluminium: 0 w slugach (produkty nazwane inaczej) → nie da się rozbić z danych, do ręki przy panelu.
+
+## WNIOSEK KOŃCOWY AUDYTU (~14 typów sprawdzonych w Google)
+Osie podziału, których używa konkurencja = dokładnie te w mojej dekompozycji (kolor / rozmiar / motyw /
+styl / płeć / funkcja / materiał). Nie brakuje żadnej osi kategoryzacyjnej. Dodane po audycie: „biurka z
+nadstawką" (8). Jedyna realna dziura to BRAK TOWARU w segmencie niemowlęcym (komody z przewijakiem,
+przewijaki, łóżeczka niemowlęce) — decyzja klienta o dosourcingu, nie błąd struktury.
