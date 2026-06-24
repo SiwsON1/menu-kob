@@ -21,6 +21,8 @@ const A=[
  ['skandynawskie',/skandynaw|scandi/,/skandynaw/],['loft / industrialne',/loft|industrial|metalow/,/loft|industrial/],['ryflowane',/ryflowan/,/ryflowan/],['glamour',/glamour|velvet/,/glamour/],['nowoczesne',/nowoczesn/,/nowoczesn/],
  // funkcja / ksztalt
  ['z barierką',/barierk/,/barierk/],['z szufladą',/szuflad/,/szuflad/],['z pojemnikiem',/pojemnik/,/pojemnik/],['z materacem',/z-materac/,/z materacem/],['na nóżkach',/nogi|nozk/,/nozk|nogach/],['wiszące',/wiszac/,/wiszac/],['regulowane',/regulowan|elektr|podnoszon/,/regulowan|elektr/],['rozkładane',/rozkladan/,/rozkladan/],['narożne',/naroz/,/naroz/],['okrągłe',/okragl/,/okragl/],['marmur',/marmur/,/marmur/],['welurowe',/welur/,/welur/],['z funkcją spania',/spania|funkcja-spania/,/funkcja spania/],['komputerowe',/komputerow/,/komputerow/],['gamingowe',/gaming/,/gaming/],['z nadstawką',/nadstaw/,/nadstaw/],['z lustrem',/lustr/,/lustr/],['z półkami',/polk/,/polk/],['pod umywalkę',/umywalk/,/umywalk/],['słupki',/slupek/,/slupek/],['blaty',/blat/,/blat/],['nad pralkę',/pralk/,/pralk/],['dla dziewczynki',/dziewczynk|rozow|serduszk/,/dla dziewczynk/],['dla chłopca',/chlopc|niebiesk/,/dla chlopc/],
+ // typy materacy
+ ['medyczne / rehabilitacyjne',/medyczn|rehabilit/,/medyczn|rehabilit/],['z pianką aloe vera',/aloe/,/aloe|vera/],['turystyczne / składane',/turystyczn/,/turystyczn|skladan/],['termoelastyczne / visco',/visco|termoelast/,/visco|termoelast/],['kokosowe',/kokos/,/kokos/],['piankowe',/piankow|pianka/,/piankow/],
 ];
 
 // kategorie: [nazwa, [buckety], [phraseRoots]]
@@ -56,7 +58,7 @@ for(const [name,bk,roots] of C){
    const n=pool.filter(p=>sre.test(p.s)).length;
    if(n<3)continue;
    const d=demand(roots,pre);
-   let kind=null;if(n>=5&&d.v>=500)kind='✅';else if(n>=3&&d.v>=150)kind='◑';
+   let kind=null;if(n>=5&&d.v>=500)kind='✅';else if(n>=3&&d.v>=150)kind='◑';else if(n>=5)kind='○';
    if(kind)rows.push({lab,n,d,kind,re:sre.source});
  }
  rows.sort((a,b)=>b.d.v-a.d.v);
