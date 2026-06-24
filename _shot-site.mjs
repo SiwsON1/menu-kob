@@ -1,0 +1,13 @@
+import pw from 'file:///C:/Users/mahin/.claude/skills/playwright-skill/node_modules/playwright/index.js';
+const {chromium}=pw;const b=await chromium.launch();
+const p=await b.newPage({viewport:{width:1440,height:1000}});
+await p.goto('file:///D:/cursor/netim-seo-os/klienci/kobi-meble/index.html',{waitUntil:'domcontentloaded'});await p.waitForTimeout(1000);
+await p.evaluate(()=>{const t=[...document.querySelectorAll('.cat')].find(x=>x.textContent.includes('Stoliki kawowe'));if(t){const br=t.closest('.branch');if(!br.classList.contains('open'))br.querySelector('.bh').click();}});
+await p.waitForTimeout(200);
+await p.evaluate(()=>{const t=[...document.querySelectorAll('.cat')].find(x=>x.textContent.includes('Stoliki kawowe'));if(t)t.click();});
+await p.waitForTimeout(400);
+await p.screenshot({path:'playwright-tmp/site-desktop.png'});
+const p2=await b.newPage({viewport:{width:375,height:800}});
+await p2.goto('file:///D:/cursor/netim-seo-os/klienci/kobi-meble/index.html',{waitUntil:'domcontentloaded'});await p2.waitForTimeout(900);
+await p2.screenshot({path:'playwright-tmp/site-mobile.png'});
+console.log('shots done');await b.close();
