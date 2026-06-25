@@ -1,7 +1,7 @@
 import fs from 'fs';
 const csv=fs.readFileSync('produkty-mapowanie-FINAL-2026-06-19.csv','utf8').trim().split(/\r?\n/);csv.shift();
 const all=[];for(const l of csv){const m=l.match(/^([^,]+),"?(.*?)"?,"?(.*?)"?$/);if(m)all.push({url:m[1],slug:m[2].toLowerCase(),b:m[3]});}
-function pick(buckets,slug,re){let p=all.filter(x=>buckets.includes(x.b));if(slug)p=p.filter(x=>slug.every(t=>x.slug.includes(t)));if(re){const r=new RegExp(re);p=p.filter(x=>r.test(x.slug));}return p;}
+function pick(buckets,slug,re,nre){let p=all.filter(x=>buckets.includes(x.b));if(slug)p=p.filter(x=>slug.every(t=>x.slug.includes(t)));if(re){const r=new RegExp(re);p=p.filter(x=>r.test(x.slug));}if(nre){const n=new RegExp(nre);p=p.filter(x=>!n.test(x.slug));}return p;}
 const BEDB2=['Łóżka dziecięce grafika/bajkowe','Łóżka dziecięce klasyczne','Łóżka inne','Łóżka podwójne dziecięce/rozsuwane','Łóżka piętrowe'];
 
 const T=[
@@ -18,7 +18,7 @@ const T=[
   {n:'Łóżka domki',ph:'łóżeczko domek',v:9900,b:['Łóżko domek'],subs:[]},
   {n:'Łóżka Montessori',ph:'łóżko montessori',v:1300,b:['Łóżko Montessori/podłogowe'],subs:[]},
   {n:'Łóżka samochody',ph:'łóżka samochody',v:390,b:BEDB2,re:'auto|samochod|policja|wyscig|traktor',subs:[]},
-  {n:'Łóżka ze zwierzętami',ph:'łóżka ze zwierzętami',v:180,b:BEDB2,re:'jednorozec|kotek|mis-|zajac|sowa|panda|bear|bunny|teddy|cat|spiaca',subs:[]},
+  {n:'Łóżka ze zwierzętami',ph:'łóżka ze zwierzętami',v:180,b:BEDB2,re:'jednorozec|kotek|mis-|zajac|sowa|panda|bear|bunny|teddy|cat',subs:[]},
   {n:'Łóżka dla dziewczynki księżniczka',ph:'łóżko dla dziewczynki księżniczka',v:260,b:BEDB2,re:'ksiezniczk|princess|korona|zamek',subs:[]},
   {n:'Szafy dziecięce',ph:'szafa do pokoju dziecięcego',v:5400,b:['Szafy dziecięce'],subs:[]},
   {n:'Regały na zabawki',ph:'regał na zabawki',v:14800,b:['Regały'],s:['zabawk'],subs:[]},
@@ -45,7 +45,7 @@ const T=[
  {br:'Salon i jadalnia', cats:[
   {n:'Stoliki kawowe i ławy',ph:'stolik kawowy',v:110000,b:['Stoliki kawowe / ławy'],subs:[{n:'okrągłe',ph:'stolik kawowy okrągły',v:27100,s:['okragl']},{n:'ławy do salonu',ph:'ława do salonu',v:14800,s:['lawa']},{n:'czarne',ph:'stolik kawowy czarny',v:4400,s:['czarn']}]},
   {n:'Stoły do jadalni',ph:'stół do jadalni',v:18100,b:['Stoły (jadalnia)'],subs:[{n:'okrągłe',ph:'stół okrągły rozkładany',v:33100,s:['okragl']}]},
-  {n:'Szafki RTV',ph:'szafka rtv',v:49500,b:['Szafki RTV'],subs:[{n:'białe',ph:'szafka rtv biała',v:3600,s:['bial']},{n:'dąb',ph:'szafka rtv dąb',v:1300,s:['dab']},{n:'czarne',ph:'szafka rtv czarna',v:2400,s:['czarn']},{n:'wiszące',ph:'szafka rtv wisząca',v:9900,s:['wiszac']}]},
+  {n:'Szafki RTV',ph:'szafka rtv',v:49500,b:['Szafki RTV'],nre:'zestaw-mebli-do-salonu|mebloscianka|icaro',subs:[{n:'białe',ph:'szafka rtv biała',v:3600,s:['bial']},{n:'dąb',ph:'szafka rtv dąb',v:1300,s:['dab']},{n:'czarne',ph:'szafka rtv czarna',v:2400,s:['czarn']},{n:'wiszące',ph:'szafka rtv wisząca',v:9900,s:['wiszac']}]},
   {n:'Meblościanki / zestawy do salonu',ph:'meblościanka',v:14800,b:['Szafki RTV','Łazienka/kuchnia - zabudowa'],re:'zestaw-mebli-do-salonu|mebloscianka|icaro',subs:[]},
   {n:'Krzesła do jadalni',ph:'krzesła do jadalni',v:74000,b:['Krzesła (jadalnia/obrotowe)'],subs:[]},
   {n:'Kanapy i narożniki',ph:'narożnik rozkładany',v:18100,b:['Kanapy/narożniki/sofy'],subs:[{n:'z funkcją spania',ph:'kanapa z funkcją spania',v:8100,s:['spania']}]},
@@ -75,7 +75,7 @@ const T=[
 const CLEANSUBS={
  'Łóżka dziecięce':[
    {n:'Łóżka dziecięce 160x80',re:'160x80'},{n:'Łóżka dziecięce 140x70',re:'140x70'},{n:'Łóżka dziecięce 180x80',re:'180x80'},
-   {n:'Łóżka z barierką',re:'barierk'},{n:'Łóżka z szufladą',re:'szuflad'},{n:'Łóżka z materacem',re:'z-materac'},
+   {n:'Łóżka z barierką',re:'barierk'},{n:'Łóżka z szufladą',re:'szuflad'},{n:'Łóżka z materacem',re:'(?<!be)z-materac'},
    {n:'Łóżka dla dziewczynki',re:'dziewczynk|rozow'},{n:'Łóżka białe',re:'bialy|biale'},{n:'Łóżka dąb',re:'dab|artisan'}],
  'Łóżka podwójne':[{n:'Łóżka 160x200',re:'160x200'},{n:'Łóżka 140x200',re:'140x200'},{n:'Łóżka z pojemnikiem',re:'pojemnik'},{n:'Łóżka tapicerowane',re:'tapicerowan'}],
  'Łóżka piętrowe':[{n:'Łóżka piętrowe domki',re:'domek'},{n:'Łóżka piętrowe 80x180',re:'80x180'},{n:'Łóżka piętrowe 80x160',re:'80x160'}],
@@ -88,7 +88,7 @@ const CLEANSUBS={
  'Materace':[{n:'Materace kieszeniowe',re:'kieszeniow'},{n:'Materace kokosowe',re:'kokos'},{n:'Materace piankowe',re:'piankow|pianka'},{n:'Materace medyczne',re:'medyczn'},{n:'Materace termoelastyczne',re:'visco|termoelast'}],
  'Regały':[{n:'Regały na książki',re:'ksiazk'},{n:'Regały dąb',re:'dab|artisan|craft'},{n:'Regały białe',re:'bialy|biale'},{n:'Regały otwarte',re:'otwart'}],
  'Szafki na buty':[{n:'Szafki na buty białe',re:'bialy|biala'},{n:'Szafki na buty dąb',re:'dab|sonoma'},{n:'Szafki na buty z siedziskiem',re:'siedzisk'}],
- 'Meble łazienkowe na wymiar':[{n:'Szafki pod umywalkę',re:'umywalk'},{n:'Słupki łazienkowe',re:'slupek'},{n:'Blaty kuchenne',re:'blat'},{n:'Szafki z lustrem',re:'lustr'},{n:'Szafki nad pralkę',re:'pralk'}],
+ 'Meble łazienkowe na wymiar':[{n:'Szafki pod umywalkę',re:'umywalk'},{n:'Słupki łazienkowe',re:'slupek'},{n:'Blaty łazienkowe',re:'blat'},{n:'Szafki z lustrem',re:'lustr'},{n:'Szafki nad pralkę',re:'pralk'}],
  'Garderoby i szafy':[{n:'Szafy dwudrzwiowe',re:'dwudrzwiow'},{n:'Szafy z szufladami',re:'szuflad'},{n:'Garderoby',re:'garderob'}],
 };
 const DKMAP={'Łóżka dziecięce':'Łóżka dziecięce','Łóżka piętrowe':'Łóżka piętrowe','Łóżka młodzieżowe':'Łóżka młodzieżowe','Łóżka podwójne':'Łóżka podwójne','Komody':'Komody','Szafki nocne':'Szafki nocne','Szafki RTV':'Szafki RTV','Biurka':'Biurka','Stoły do jadalni':'Stoły','Stoliki kawowe i ławy':'Stoliki kawowe / ławy','Krzesła do jadalni':'Krzesła','Kanapy i narożniki':'Kanapy / narożniki','Fotele wypoczynkowe':'Fotele / pufy','Pufy i podnóżki':'Fotele / pufy','Regały':'Regały','Regały na zabawki':'Regały','Materace':'Materace','Toaletki':'Toaletki','Meble łazienkowe na wymiar':'Meble łazienkowe','Szafki na buty':'Szafki na buty','Szafy dziecięce':'Szafy / garderoby','Garderoby i szafy':'Szafy / garderoby'};
@@ -110,7 +110,7 @@ for(const [bi,br] of T.entries()){
   // DWA PANELE: lewy = lista kategorii, prawy = podkategorie najechanej kategorii (jak meble.pl)
   let left=''; let panels='';
   br.cats.forEach((cat,ci)=>{
-    const prods=pick(cat.b,cat.s,cat.re);prods.forEach(p=>{if(!seen.has(p.url)){seen.add(p.url);totalProd++;}});
+    const prods=pick(cat.b,cat.s,cat.re,cat.nre);prods.forEach(p=>{if(!seen.has(p.url)){seen.add(p.url);totalProd++;}});
     const key=br.br+'||'+cat.n;
     const subs=subsFor(cat);
     DATA[key]={ph:cat.ph,v:cat.v,prods:prods.map(p=>({u:p.url,s:p.slug})),subs};
@@ -229,6 +229,7 @@ for(const p of all){
       if(!cat.b.includes(p.b))continue;
       if(cat.s&&!cat.s.every(t=>p.slug.includes(t)))continue;
       if(cat.re&&!new RegExp(cat.re).test(p.slug))continue;
+      if(cat.nre&&new RegExp(cat.nre).test(p.slug))continue;
       const subs=CLEANSUBS[cat.n]||[];
       const msub=subs.filter(s=>new RegExp(s.re).test(p.slug)).map(s=>s.n).join(' | ');
       pc+=`${p.url};${p.slug};${br.br};${cat.n};${msub}\n`;covered.add(p.url);
