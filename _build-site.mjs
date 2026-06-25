@@ -12,7 +12,8 @@ const T=[
     {n:'dla dziewczynki',ph:'łóżko dla dziewczynki',v:9900,s:['dziewczynk']}]},
   {n:'Łóżka piętrowe',ph:'łóżko piętrowe',v:40500,b:['Łóżka piętrowe'],subs:[{n:'80x180',ph:'łóżko piętrowe 80x180',v:140,s:['80x180']},{n:'80x160',ph:'łóżko piętrowe 80x160',v:140,s:['80x160']}]},
   {n:'Łóżka młodzieżowe',ph:'łóżka młodzieżowe',v:27100,b:['Łóżka młodzieżowe'],subs:[{n:'90x200',ph:'łóżko młodzieżowe 90x200',v:1600,s:['200x90']}]},
-  {n:'Łóżka podwójne',ph:'łóżko podwójne dziecięce',v:2900,b:['Łóżka podwójne dziecięce/rozsuwane'],subs:[{n:'160x200',ph:'łóżko 160x200',v:6600,s:['160x200']},{n:'140x200',ph:'łóżko 140x200',v:5400,s:['140x200']},{n:'z pojemnikiem',ph:'łóżko z pojemnikiem',v:6600,s:['pojemnik']}]},
+  {n:'Łóżka podwójne',ph:'łóżko podwójne dziecięce',v:2900,b:['Łóżka podwójne dziecięce/rozsuwane','Łóżka tapicerowane/panele'],subs:[{n:'160x200',ph:'łóżko 160x200',v:6600,s:['160x200']},{n:'140x200',ph:'łóżko 140x200',v:5400,s:['140x200']},{n:'z pojemnikiem',ph:'łóżko z pojemnikiem',v:6600,s:['pojemnik']}]},
+  {n:'Barierki i stelaże',ph:'barierka do łóżka',v:1000,b:['Barierki/stelaże'],subs:[]},
   {n:'Łóżka domki',ph:'łóżeczko domek',v:9900,b:['Łóżko domek'],subs:[]},
   {n:'Szafy dziecięce',ph:'szafa do pokoju dziecięcego',v:5400,b:['Szafy dziecięce'],subs:[]},
   {n:'Regały na zabawki',ph:'regał na zabawki',v:14800,b:['Regały'],s:['zabawk'],subs:[]},
@@ -21,7 +22,7 @@ const T=[
   {n:'Krzesełka i stoliki dziecięce',ph:'stolik i krzesełko dla dziecka',v:880,b:['Stoliki+krzesełka dziecięce','Krzesła dziecięce ergonomiczne'],subs:[]},
  ]},
  {br:'Biuro i nauka', cats:[
-  {n:'Biurka',ph:'biurko',v:90500,b:['Biurka (dziecięce/proste)'],subs:[
+  {n:'Biurka',ph:'biurko',v:90500,b:['Biurka (dziecięce/proste)','Biurka rozkładane/chowane (VERTO)'],subs:[
     {n:'białe',ph:'biurko białe',v:12100,s:['bial']},{n:'dąb',ph:'biurko dąb',v:2900,s:['dab']},{n:'komputerowe',ph:'biurka komputerowe',v:6600,s:['komputerow']},{n:'z szufladami',ph:'biurko z szufladami',v:1600,s:['szuflad']}]},
   {n:'Biurka regulowane elektrycznie',ph:'biurko regulowane elektrycznie',v:9900,b:['Biurka regulowane/elektryczne'],subs:[]},
   {n:'Biurka narożne',ph:'biurko narożne',v:27100,b:['Biurka narożne'],subs:[]},
@@ -31,7 +32,7 @@ const T=[
   {n:'Komody',ph:'komoda',v:60500,b:['Komody (ogólne)','Komody z grafiką'],subs:[
     {n:'białe',ph:'komoda biała',v:27100,s:['bial']},{n:'dąb',ph:'komoda dąb',v:3600,s:['dab']},{n:'czarne',ph:'komoda czarna',v:4400,s:['czarn']},{n:'kaszmir',ph:'komoda kaszmir',v:4400,s:['kaszmir']}]},
   {n:'Szafki nocne',ph:'szafka nocna',v:49500,b:['Szafki nocne'],subs:[{n:'białe',ph:'szafka nocna biała',v:8100,s:['bial']},{n:'dąb',ph:'szafka nocna dąb',v:1000,s:['dab']}]},
-  {n:'Garderoby',ph:'garderoba',v:3600,b:['Garderoby / szafy wielofunkcyjne'],subs:[]},
+  {n:'Garderoby i szafy',ph:'garderoba',v:3600,b:['Garderoby / szafy wielofunkcyjne','Szafy (ogólne)'],subs:[]},
   {n:'Toaletki',ph:'toaletka',v:6600,b:['Toaletki'],subs:[]},
   {n:'Materace',ph:'materac dziecięcy',v:2400,b:['Materace i dopłaty'],subs:[{n:'kieszeniowe',ph:'materac kieszeniowy',v:2400,s:['kieszeniow']}]},
   {n:'Półkotapczany',ph:'półkotapczan',v:480,b:['Półkotapczany (VERTO)'],subs:[]},
@@ -44,10 +45,11 @@ const T=[
   {n:'Kanapy i narożniki',ph:'narożnik rozkładany',v:18100,b:['Kanapy/narożniki/sofy'],subs:[{n:'z funkcją spania',ph:'kanapa z funkcją spania',v:8100,s:['spania']}]},
   {n:'Fotele',ph:'fotel',v:49500,b:['Fotele/pufy/ławki'],s:['fotel'],subs:[]},
   {n:'Pufy',ph:'pufa',v:12100,b:['Fotele/pufy/ławki'],s:['puf'],subs:[]},
+  {n:'Taborety i hokery barowe',ph:'hoker barowy',v:18100,b:['Taborety / hokery barowe'],subs:[]},
   {n:'Regały',ph:'regał',v:27100,b:['Regały'],subs:[]},
  ]},
  {br:'Łazienka i kuchnia', cats:[
-  {n:'Meble łazienkowe na wymiar',ph:'meble łazienkowe na wymiar',v:2400,b:['Łazienka/kuchnia - zabudowa'],subs:[
+  {n:'Meble łazienkowe na wymiar',ph:'meble łazienkowe na wymiar',v:2400,b:['Łazienka/kuchnia - zabudowa','Pomocniki kuchenne'],subs:[
     {n:'blaty',ph:'blaty kuchenne',v:14800,s:['blat']},{n:'szafki pod umywalkę',ph:'szafka pod umywalkę',v:1900,s:['umywalk']},{n:'słupki',ph:'słupek łazienkowy',v:1900,s:['slupek']}]},
  ]},
  {br:'Przedpokój', cats:[
