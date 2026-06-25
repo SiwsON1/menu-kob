@@ -74,22 +74,22 @@ const T=[
 // CZYSTE, ręcznie skontrolowane podkategorie (nazwa = keyword, re = filtr slug). Bez duplikatów, poprawne przypisanie.
 const CLEANSUBS={
  'Łóżka dziecięce':[
-   {n:'Łóżko dziecięce 160x80',re:'160x80'},{n:'Łóżko dziecięce 140x70',re:'140x70'},{n:'Łóżko dziecięce 180x80',re:'180x80'},
-   {n:'Łóżko z barierką',re:'barierk'},{n:'Łóżko z szufladą',re:'szuflad'},{n:'Łóżko z materacem',re:'z-materac'},
-   {n:'Łóżko dla dziewczynki',re:'dziewczynk|rozow'},{n:'Łóżko białe',re:'bialy|biale'},{n:'Łóżko dąb',re:'dab|artisan'}],
- 'Łóżka podwójne':[{n:'Łóżko 160x200',re:'160x200'},{n:'Łóżko 140x200',re:'140x200'},{n:'Łóżko z pojemnikiem',re:'pojemnik'},{n:'Łóżko tapicerowane',re:'tapicerowan'}],
- 'Łóżka piętrowe':[{n:'Łóżko piętrowe domek',re:'domek'},{n:'Łóżko piętrowe 80x180',re:'80x180'},{n:'Łóżko piętrowe 80x160',re:'80x160'}],
- 'Komody':[{n:'Komoda biała',re:'bialy|biala'},{n:'Komoda dąb',re:'dab|artisan|sonoma'},{n:'Komoda czarna',re:'czarn'},{n:'Komoda kaszmir',re:'kaszmir'},{n:'Komoda z szufladami',re:'szuflad'},{n:'Komoda na nóżkach',re:'nogi|nozk'},{n:'Komoda skandynawska',re:'skandynaw'},{n:'Komoda loft',re:'loft'}],
- 'Szafki nocne':[{n:'Szafka nocna biała',re:'bialy|biala'},{n:'Szafka nocna dąb',re:'dab|sonoma'},{n:'Szafka nocna czarna',re:'czarn'},{n:'Szafka nocna z szufladą',re:'szuflad'}],
- 'Szafki RTV':[{n:'Szafka RTV biała',re:'bialy|biala'},{n:'Szafka RTV dąb',re:'dab|artisan'},{n:'Szafka RTV czarna',re:'czarn'},{n:'Szafka RTV wisząca',re:'wiszac'},{n:'Szafka RTV na nóżkach',re:'nogi|nozk'},{n:'Szafka RTV z półkami',re:'polk'},{n:'Szafka RTV loft',re:'loft'}],
- 'Biurka':[{n:'Biurko białe',re:'bialy|biale'},{n:'Biurko dąb',re:'dab|artisan|sonoma'},{n:'Biurko komputerowe',re:'komputerow'},{n:'Biurko z szufladami',re:'szuflad'}],
- 'Stoliki kawowe i ławy':[{n:'Stolik kawowy okrągły',re:'okragl'},{n:'Stolik kawowy dąb',re:'dab|artisan|sonoma'},{n:'Stolik kawowy czarny',re:'czarn'},{n:'Stolik kawowy marmur',re:'marmur'},{n:'Ława do salonu',re:'lawa'}],
- 'Stoły do jadalni':[{n:'Stół okrągły',re:'okragl'},{n:'Stół rozkładany',re:'rozkladan'},{n:'Stół dąb',re:'dab|artisan|sonoma'},{n:'Stół marmur',re:'marmur'}],
- 'Materace':[{n:'Materac kieszeniowy',re:'kieszeniow'},{n:'Materac kokosowy',re:'kokos'},{n:'Materac piankowy',re:'piankow|pianka'},{n:'Materac medyczny',re:'medyczn'},{n:'Materac termoelastyczny',re:'visco|termoelast'}],
- 'Regały':[{n:'Regał na książki',re:'ksiazk'},{n:'Regał dąb',re:'dab|artisan|craft'},{n:'Regał biały',re:'bialy|biale'},{n:'Regał otwarty',re:'otwart'}],
- 'Szafki na buty':[{n:'Szafka na buty biała',re:'bialy|biala'},{n:'Szafka na buty dąb',re:'dab|sonoma'},{n:'Szafka na buty z siedziskiem',re:'siedzisk'}],
- 'Meble łazienkowe na wymiar':[{n:'Szafka pod umywalkę',re:'umywalk'},{n:'Słupek łazienkowy',re:'slupek'},{n:'Blat kuchenny',re:'blat'},{n:'Szafka z lustrem',re:'lustr'},{n:'Szafka nad pralkę',re:'pralk'}],
- 'Garderoby i szafy':[{n:'Szafa dwudrzwiowa',re:'dwudrzwiow'},{n:'Szafa z szufladami',re:'szuflad'},{n:'Garderoba',re:'garderob'}],
+   {n:'Łóżka dziecięce 160x80',re:'160x80'},{n:'Łóżka dziecięce 140x70',re:'140x70'},{n:'Łóżka dziecięce 180x80',re:'180x80'},
+   {n:'Łóżka z barierką',re:'barierk'},{n:'Łóżka z szufladą',re:'szuflad'},{n:'Łóżka z materacem',re:'z-materac'},
+   {n:'Łóżka dla dziewczynki',re:'dziewczynk|rozow'},{n:'Łóżka białe',re:'bialy|biale'},{n:'Łóżka dąb',re:'dab|artisan'}],
+ 'Łóżka podwójne':[{n:'Łóżka 160x200',re:'160x200'},{n:'Łóżka 140x200',re:'140x200'},{n:'Łóżka z pojemnikiem',re:'pojemnik'},{n:'Łóżka tapicerowane',re:'tapicerowan'}],
+ 'Łóżka piętrowe':[{n:'Łóżka piętrowe domki',re:'domek'},{n:'Łóżka piętrowe 80x180',re:'80x180'},{n:'Łóżka piętrowe 80x160',re:'80x160'}],
+ 'Komody':[{n:'Komody białe',re:'bialy|biala'},{n:'Komody dąb',re:'dab|artisan|sonoma'},{n:'Komody czarne',re:'czarn'},{n:'Komody kaszmir',re:'kaszmir'},{n:'Komody z szufladami',re:'szuflad'},{n:'Komody na nóżkach',re:'nogi|nozk'},{n:'Komody skandynawskie',re:'skandynaw'},{n:'Komody loft',re:'loft'}],
+ 'Szafki nocne':[{n:'Szafki nocne białe',re:'bialy|biala'},{n:'Szafki nocne dąb',re:'dab|sonoma'},{n:'Szafki nocne czarne',re:'czarn'},{n:'Szafki nocne z szufladą',re:'szuflad'}],
+ 'Szafki RTV':[{n:'Szafki RTV białe',re:'bialy|biala'},{n:'Szafki RTV dąb',re:'dab|artisan'},{n:'Szafki RTV czarne',re:'czarn'},{n:'Szafki RTV wiszące',re:'wiszac'},{n:'Szafki RTV na nóżkach',re:'nogi|nozk'},{n:'Szafki RTV z półkami',re:'polk'},{n:'Szafki RTV loft',re:'loft'}],
+ 'Biurka':[{n:'Biurka białe',re:'bialy|biale'},{n:'Biurka dąb',re:'dab|artisan|sonoma'},{n:'Biurka komputerowe',re:'komputerow'},{n:'Biurka z szufladami',re:'szuflad'}],
+ 'Stoliki kawowe i ławy':[{n:'Stoliki kawowe okrągłe',re:'okragl'},{n:'Stoliki kawowe dąb',re:'dab|artisan|sonoma'},{n:'Stoliki kawowe czarne',re:'czarn'},{n:'Stoliki kawowe marmur',re:'marmur'},{n:'Ławy do salonu',re:'lawa'}],
+ 'Stoły do jadalni':[{n:'Stoły okrągłe',re:'okragl'},{n:'Stoły rozkładane',re:'rozkladan'},{n:'Stoły dąb',re:'dab|artisan|sonoma'},{n:'Stoły marmur',re:'marmur'}],
+ 'Materace':[{n:'Materace kieszeniowe',re:'kieszeniow'},{n:'Materace kokosowe',re:'kokos'},{n:'Materace piankowe',re:'piankow|pianka'},{n:'Materace medyczne',re:'medyczn'},{n:'Materace termoelastyczne',re:'visco|termoelast'}],
+ 'Regały':[{n:'Regały na książki',re:'ksiazk'},{n:'Regały dąb',re:'dab|artisan|craft'},{n:'Regały białe',re:'bialy|biale'},{n:'Regały otwarte',re:'otwart'}],
+ 'Szafki na buty':[{n:'Szafki na buty białe',re:'bialy|biala'},{n:'Szafki na buty dąb',re:'dab|sonoma'},{n:'Szafki na buty z siedziskiem',re:'siedzisk'}],
+ 'Meble łazienkowe na wymiar':[{n:'Szafki pod umywalkę',re:'umywalk'},{n:'Słupki łazienkowe',re:'slupek'},{n:'Blaty kuchenne',re:'blat'},{n:'Szafki z lustrem',re:'lustr'},{n:'Szafki nad pralkę',re:'pralk'}],
+ 'Garderoby i szafy':[{n:'Szafy dwudrzwiowe',re:'dwudrzwiow'},{n:'Szafy z szufladami',re:'szuflad'},{n:'Garderoby',re:'garderob'}],
 };
 const DKMAP={'Łóżka dziecięce':'Łóżka dziecięce','Łóżka piętrowe':'Łóżka piętrowe','Łóżka młodzieżowe':'Łóżka młodzieżowe','Łóżka podwójne':'Łóżka podwójne','Komody':'Komody','Szafki nocne':'Szafki nocne','Szafki RTV':'Szafki RTV','Biurka':'Biurka','Stoły do jadalni':'Stoły','Stoliki kawowe i ławy':'Stoliki kawowe / ławy','Krzesła do jadalni':'Krzesła','Kanapy i narożniki':'Kanapy / narożniki','Fotele wypoczynkowe':'Fotele / pufy','Pufy i podnóżki':'Fotele / pufy','Regały':'Regały','Regały na zabawki':'Regały','Materace':'Materace','Toaletki':'Toaletki','Meble łazienkowe na wymiar':'Meble łazienkowe','Szafki na buty':'Szafki na buty','Szafy dziecięce':'Szafy / garderoby','Garderoby i szafy':'Szafy / garderoby'};
 function subsFor(cat){ if(CLEANSUBS[cat.n]) return CLEANSUBS[cat.n].map(s=>({n:s.n,re:s.re})); return (cat.subs||[]).map(s=>({n:s.n,re:s.s.join('|')})); }
