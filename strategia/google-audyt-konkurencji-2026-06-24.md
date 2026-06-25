@@ -76,3 +76,26 @@ Osie podziału, których używa konkurencja = dokładnie te w mojej dekompozycji
 styl / płeć / funkcja / materiał). Nie brakuje żadnej osi kategoryzacyjnej. Dodane po audycie: „biurka z
 nadstawką" (8). Jedyna realna dziura to BRAK TOWARU w segmencie niemowlęcym (komody z przewijakiem,
 przewijaki, łóżeczka niemowlęce) — decyzja klienta o dosourcingu, nie błąd struktury.
+
+## METODA BREADCRUMB (2026-06-25): produkt KOBI → ścieżka kategorii u konkurencji
+Sprawdzone realne produkty, odczytane breadcrumb/kategorie u konkurencji:
+
+- **Łóżko piętrowe domek 80x180 (AURELIA = produkt KOBI)** → LanoMeble breadcrumb:
+  `Łóżka dziecięce → Piętrowe → Domki → 80-180 → Białe`. AURELIA siedzi dokładnie tu.
+  Osie: typ → motyw → rozmiar → kolor = dokładnie nasze. ✅
+- **Łóżko dziecięce 140x70 z barierką+szufladą (FALA/LUK = KOBI)** → MIRAT `/lozka-dzieciece-70x140`,
+  BRW `/materac_powierzchnia_spania-70x140`. Kategoria = ROZMIAR. Mamy 140x70. ✅
+- **Komoda dąb artisan** → meble.pl `/komody,dab-artisan` (faseta koloru), akord `/komody-dab-artisan`,
+  `/komody-dab-artisan-biale` (dąb+biały), filmeble, bromarkt. Oś = kolor + szerokość (40-160cm). Mamy. ✅
+- **Szafka RTV wisząca biała** → abra `/szafki-rtv-pod-telewizor` (biała/czarna/wiszące), meble.pl
+  `/meble-rtv,kolor-bialy`, meb24 `/szafki-rtv-biale`, meblujdom `/szafki-rtv-wiszace`. Oś = kolor + wisząca. Mamy. ✅
+- **Łóżka samochody** → plastiko `/lozka-samochody`, maniadrewna `/lozka-w-ksztalcie-aut`. Osobna kat. motywowa. DODANE. ✅
+
+WNIOSEK: produkty KOBI lądują u konkurencji w kategoriach po osiach typ/kolor/rozmiar/motyw/styl/funkcja —
+identycznych z naszą dekompozycją. Breadcrumb potwierdza strukturę 1:1.
+
+## FIX 2026-06-25 (błąd zgłoszony przez klienta)
+Kategoria „serca" usunięta: „uchwyty serduszka" w nazwie = kształt UCHWYTÓW, nie motyw łóżka. Regex /serc|serduszk/
+łapał uchwyty jako motyw (EMMA wpadła w „serca"). Usunięto. Lekcja: tokeny „uchwyty X" to opis okucia, nie motyw.
+Dodano kategorie motywowe łóżek jako OSOBNE pozycje (jak interbeds/LanoMeble): Łóżka samochody/autka (24),
+ze zwierzątkami, dla księżniczki.
