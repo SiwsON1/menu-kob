@@ -27,6 +27,12 @@
 .crumb{font-family:'Plus Jakarta Sans',sans-serif;font-size:24px;font-weight:800;margin:0 0 8px;letter-spacing:-.02em;color:oklch(0.25 0.04 260)}.crumb small{font-weight:600;color:var(--mut);font-family:Manrope}
 .cmeta{margin-bottom:18px}.pill{display:inline-block;background:#fff;border:1px solid var(--line);padding:4px 11px;border-radius:20px;margin:0 7px 6px 0;font-size:12px;box-shadow:var(--shadow)}.pill.hot{color:var(--hot);border-color:var(--hot);font-weight:600}
 .chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}.chip{background:#fff;border:1px solid var(--line);color:var(--ink);padding:8px 13px;border-radius:24px;cursor:pointer;font:inherit;font-size:13px;display:inline-flex;gap:7px;align-items:center;box-shadow:var(--shadow)}.chip:hover{border-color:var(--acc)}.chip.active{background:var(--acc);border-color:var(--acc);color:#fff}.chip.active .cv{color:oklch(0.92 0.05 252)}.chip .cv{color:var(--hot);font-size:11px}.chip b{font-variant-numeric:tabular-nums}
+.subhead{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:14px;color:var(--mut);margin:4px 0 10px}
+.subcats{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:8px;margin-bottom:24px}
+.subcat{display:flex;justify-content:space-between;align-items:center;gap:10px;background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:11px 14px;cursor:pointer;font:inherit;color:var(--ink);text-align:left}
+.subcat:hover{background:#fff;border-color:var(--acc);box-shadow:var(--shadow)}
+.subcat.active{background:var(--acc);border-color:var(--acc);color:#fff}
+.scn{font-weight:600;font-size:14px}.scc{font-size:12px;color:var(--mut);font-variant-numeric:tabular-nums}.subcat.active .scc{color:oklch(0.92 0.05 252)}
 .plist{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:11px}
 .pcard{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px;font-size:13px;text-decoration:none;color:var(--ink);display:block;box-shadow:var(--shadow);transition:transform .12s,border-color .12s}.pcard:hover{border-color:var(--acc);transform:translateY(-2px)}.pn{font-weight:600}.pu{color:var(--mut);font-size:11px;margin-top:3px;word-break:break-all}
 .empty{text-align:center;color:var(--mut);padding:50px 0;line-height:1.8}
@@ -64,10 +70,11 @@ function render(key){const d=DATA[key];const name=key.split('||')[1];const branc
  document.getElementById('hero').style.display='none';
  let h='<div class="crumb">'+name+' <small>w dziale '+branch+'</small></div>';
  h+='<div class="cmeta"><span class="pill hot">'+fmt(d.v)+' wyszukiwań/mc</span><span class="pill">fraza: '+d.ph+'</span><span class="pill">'+d.prods.length+' produktów</span></div>';
- if(d.subs&&d.subs.length){h+='<div class="chips"><button class="chip active" data-re="">Wszystkie <b>'+d.prods.length+'</b></button>';d.subs.forEach(s=>{const c=d.prods.filter(p=>new RegExp(s.re).test(p.s)).length;if(c>0)h+='<button class="chip" data-re="'+s.re+'">'+s.n+' <b>'+c+'</b></button>';});h+='</div>';}
+ const vis=(d.subs||[]).map(s=>({...s,c:d.prods.filter(p=>new RegExp(s.re).test(p.s)).length})).filter(s=>s.c>0);
+ if(vis.length){h+='<div class="subhead">Podkategorie ('+vis.length+'):</div><div class="subcats"><button class="subcat active" data-re=""><span class="scn">Wszystkie</span><span class="scc">'+d.prods.length+'</span></button>';vis.forEach(s=>{h+='<button class="subcat" data-re="'+s.re+'"><span class="scn">'+s.n+'</span><span class="scc">'+s.c+'</span></button>';});h+='</div>';}
  h+=d.prods.length?'<div class="plist" id="pl">'+cards(d.prods)+'</div>':'<div class="empty">Kategoria koncepcyjna lub do dosourcingu.</div>';
  return h;}
 document.querySelectorAll('.mcat').forEach(c=>c.addEventListener('click',()=>{cur=c.dataset.key;closeMega();document.getElementById('main').innerHTML=render(cur);window.scrollTo({top:0,behavior:'smooth'});}));
-document.getElementById('main').addEventListener('click',e=>{const ch=e.target.closest('.chip');if(!ch||!cur)return;ch.parentNode.querySelectorAll('.chip').forEach(x=>x.classList.remove('active'));ch.classList.add('active');const re=ch.dataset.re;const list=re?DATA[cur].prods.filter(p=>new RegExp(re).test(p.s)):DATA[cur].prods;document.getElementById('pl').innerHTML=cards(list);});
+document.getElementById('main').addEventListener('click',e=>{const ch=e.target.closest('.subcat');if(!ch||!cur)return;ch.parentNode.querySelectorAll('.subcat').forEach(x=>x.classList.remove('active'));ch.classList.add('active');const re=ch.dataset.re;const list=re?DATA[cur].prods.filter(p=>new RegExp(re).test(p.s)):DATA[cur].prods;document.getElementById('pl').innerHTML=cards(list);});
 const q=document.getElementById('q');q.addEventListener('input',()=>{const t=q.value.trim().toLowerCase();const m=document.getElementById('main');document.getElementById('hero').style.display='none';if(t.length<2){m.innerHTML='<div class="empty">Wpisz min. 2 znaki albo wybierz kategorię z menu u góry.</div>';return;}let hits=[];for(const k in DATA)for(const p of DATA[k].prods)if(pretty(p.s).toLowerCase().includes(t))hits.push(p);m.innerHTML='<div class="crumb">Wyniki: '+t+' <small>'+hits.length+' produktów</small></div><div class="plist">'+cards(hits.slice(0,300))+'</div>';});
 </script></body></html>

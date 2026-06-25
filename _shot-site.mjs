@@ -6,6 +6,6 @@ await p.evaluate(()=>{const n=[...document.querySelectorAll('.navitem')].find(x=
 await p.waitForTimeout(300);
 await p.evaluate(()=>{const c=[...document.querySelectorAll('.mcat')].find(x=>x.textContent.includes('Łóżka dziecięce'));if(c)c.click();});
 await p.waitForTimeout(400);
-const chips=await p.evaluate(()=>[...document.querySelectorAll('.chip')].map(c=>c.textContent.replace(/\s+/g,' ').trim()));
-console.log('Chipy:',JSON.stringify(chips));
-await p.screenshot({path:'playwright-tmp/site-clean.png'});await b.close();
+await p.screenshot({path:'playwright-tmp/site-subcat.png'});
+console.log('subcats:',await p.evaluate(()=>[...document.querySelectorAll('.subcat .scn')].map(x=>x.textContent)));
+await b.close();
