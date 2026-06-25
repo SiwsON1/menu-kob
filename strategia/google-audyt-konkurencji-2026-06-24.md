@@ -105,3 +105,10 @@ ze zwierzątkami, dla księżniczki.
 - zestaw mebli do salonu (ICARO/ERCOL/FREYA) → **"Meblościanki / zestawy mebli do salonu"** (allegro, ceneo, favi). NOWA kategoria, KOBI ma 26 (były w koszu RTV). DODANE.
 - krzesło obrotowe dziecięce → "krzesła do biurka dla dzieci / obrotowe" (centrumkrzesel, ikea, meblik). Mamy w Biurze.
 - łóżko montessori podłogowe → **"Łóżka Montessori"** (lanomeble /montessori, valor, fumio). NOWA osobna kategoria, KOBI 16. DODANE.
+
+## Partia 2026-06-25 c.d. — potwierdzenia (zero nowych kategorii)
+- regał otwarty na książki → "regały na książki/otwarte" (favi, novodom, bromarkt) = mamy Regały + na książki.
+- stół rozkładany do kuchni → "stoły rozkładane" (ikea, bromarkt) = mamy Stoły + rozkładany.
+- szafa dwudrzwiowa dla dzieci → "szafy do pokoju dziecięcego" (elies, mwm, ola4kids) = mamy Szafy dziecięce (liczba drzwi = drobny facet).
+- półkotapczan jednoosobowy → "tapczany/półkotapczany" (meblem4, edinos) = mamy Półkotapczany.
+WNIOSEK: audyt się zbiega — kolejne produkty nie generują nowych kategorii. Struktura kompletna.
