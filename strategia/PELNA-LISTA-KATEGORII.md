@@ -9,6 +9,8 @@
    - Łóżka z szufladą (55 prod.)
    - Łóżka z materacem (10 prod.)
    - Łóżka dla dziewczynki (22 prod.)
+   - Łóżka dla chłopca (23 prod.)
+   - Łóżka bez materaca (25 prod.)
    - Łóżka białe (79 prod.)
 - **Łóżka piętrowe** — 18 prod. (41k/mc)
    - Łóżka piętrowe domki (10 prod.)

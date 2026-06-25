@@ -76,7 +76,7 @@ const CLEANSUBS={
  'Łóżka dziecięce':[
    {n:'Łóżka dziecięce 160x80',re:'160x80'},{n:'Łóżka dziecięce 140x70',re:'140x70'},{n:'Łóżka dziecięce 180x80',re:'180x80'},
    {n:'Łóżka z barierką',re:'barierk'},{n:'Łóżka z szufladą',re:'szuflad'},{n:'Łóżka z materacem',re:'(?<!be)z-materac'},
-   {n:'Łóżka dla dziewczynki',re:'dziewczynk|rozow'},{n:'Łóżka białe',re:'bialy|biale'},{n:'Łóżka dąb',re:'dab|artisan'}],
+   {n:'Łóżka dla dziewczynki',re:'dziewczynk|rozow'},{n:'Łóżka dla chłopca',re:'chlopc|niebiesk|auto|samochod|policja|traktor'},{n:'Łóżka bez materaca',re:'bez-materac'},{n:'Łóżka białe',re:'bialy|biale'},{n:'Łóżka dąb',re:'dab|artisan'}],
  'Łóżka podwójne':[{n:'Łóżka 160x200',re:'160x200'},{n:'Łóżka 140x200',re:'140x200'},{n:'Łóżka z pojemnikiem',re:'pojemnik'},{n:'Łóżka tapicerowane',re:'tapicerowan'}],
  'Łóżka piętrowe':[{n:'Łóżka piętrowe domki',re:'domek'},{n:'Łóżka piętrowe 80x180',re:'80x180'},{n:'Łóżka piętrowe 80x160',re:'80x160'}],
  'Komody':[{n:'Komody białe',re:'bialy|biala'},{n:'Komody dąb',re:'dab|artisan|sonoma'},{n:'Komody czarne',re:'czarn'},{n:'Komody kaszmir',re:'kaszmir'},{n:'Komody z szufladami',re:'szuflad'},{n:'Komody na nóżkach',re:'nogi|nozk'},{n:'Komody skandynawskie',re:'skandynaw'},{n:'Komody loft',re:'loft'}],
