@@ -107,7 +107,8 @@ const DATA={};let totalProd=0;const seen=new Set();
 let nav='';let megas='';
 for(const [bi,br] of T.entries()){
   nav+=`<button class="navitem" data-bi="${bi}">${esc(br.br)}<svg viewBox="0 0 10 6" class="caret"><path d="M1 1l4 4 4-4"/></svg></button>`;
-  let cards='';
+  // zawsze populujemy DATA + budujemy kolumnę per kategoria
+  const colOf={};
   for(const cat of br.cats){
     const prods=pick(cat.b,cat.s,cat.re);prods.forEach(p=>{if(!seen.has(p.url)){seen.add(p.url);totalProd++;}});
     const key=br.br+'||'+cat.n;
@@ -115,7 +116,18 @@ for(const [bi,br] of T.entries()){
     DATA[key]={ph:cat.ph,v:cat.v,prods:prods.map(p=>({u:p.url,s:p.slug})),subs};
     let subsH='';
     for(const s of subs){const c=prods.filter(p=>new RegExp(s.re).test(p.slug)).length;if(c>0)subsH+=`<button class="msub" data-key="${esc(key)}" data-re="${esc(s.re)}">${esc(s.n)} <i>${c}</i></button>`;}
-    cards+=`<div class="mcol"><button class="mcol-h" data-key="${esc(key)}">${esc(cat.n)} <span>${prods.length}</span></button>${subsH}</div>`;
+    colOf[cat.n]={key,prods:prods.length,col:`<div class="mcol"><button class="mcol-h" data-key="${esc(key)}">${esc(cat.n)} <span>${prods.length}</span></button>${subsH}</div>`};
+  }
+  let cards='';
+  if(br.br==='Meble'){
+    // GRUPA "Łóżka" = jedna pozycja, podtypy łóżek jako podlinki (jak meble.pl)
+    const beds=br.cats.filter(c=>/^Łóżka/.test(c.n));
+    const bedTot=beds.reduce((a,c)=>a+colOf[c.n].prods,0);
+    let bedSubs=beds.map(c=>`<button class="msub" data-key="${esc('Meble||'+c.n)}" data-re="">${esc(c.n)} <i>${colOf[c.n].prods}</i></button>`).join('');
+    cards+=`<div class="mcol"><button class="mcol-h" data-key="${esc('Meble||Łóżka dziecięce')}">Łóżka <span>${bedTot}</span></button>${bedSubs}</div>`;
+    for(const cat of br.cats){ if(/^Łóżka/.test(cat.n)||cat.n==='Barierki i stelaże')continue; cards+=colOf[cat.n].col; }
+  } else {
+    for(const cat of br.cats) cards+=colOf[cat.n].col;
   }
   megas+=`<div class="mega" data-mega="${bi}"><div class="mega-inner"><div class="mega-head">${esc(br.br)}</div><div class="mgrid">${cards}</div></div></div>`;
 }
