@@ -16,9 +16,9 @@ const T=[
   {n:'Łóżka podwójne',ph:'łóżko podwójne dziecięce',v:2900,b:['Łóżka podwójne dziecięce/rozsuwane','Łóżka tapicerowane/panele'],subs:[{n:'160x200',ph:'łóżko 160x200',v:6600,s:['160x200']},{n:'140x200',ph:'łóżko 140x200',v:5400,s:['140x200']},{n:'z pojemnikiem',ph:'łóżko z pojemnikiem',v:6600,s:['pojemnik']}]},
   {n:'Barierki i stelaże',ph:'barierka do łóżka',v:1000,b:['Barierki/stelaże'],subs:[]},
   {n:'Łóżka domki',ph:'łóżeczko domek',v:9900,b:['Łóżko domek'],subs:[]},
-  {n:'Łóżka samochody / autka',ph:'łóżka samochodowe',v:390,b:BEDB2,re:'auto|samochod|policja|wyscig|traktor',subs:[]},
-  {n:'Łóżka ze zwierzątkami',ph:'łóżko ze zwierzątkiem',v:180,b:BEDB2,re:'jednorozec|kotek|mis-|zajac|sowa|panda|bear|bunny|teddy|cat|spiaca',subs:[]},
-  {n:'Łóżka dla księżniczki',ph:'łóżko księżniczki',v:260,b:BEDB2,re:'ksiezniczk|princess|korona|zamek',subs:[]},
+  {n:'Łóżka samochody',ph:'łóżka samochody',v:390,b:BEDB2,re:'auto|samochod|policja|wyscig|traktor',subs:[]},
+  {n:'Łóżka ze zwierzętami',ph:'łóżka ze zwierzętami',v:180,b:BEDB2,re:'jednorozec|kotek|mis-|zajac|sowa|panda|bear|bunny|teddy|cat|spiaca',subs:[]},
+  {n:'Łóżka dla dziewczynki księżniczka',ph:'łóżko dla dziewczynki księżniczka',v:260,b:BEDB2,re:'ksiezniczk|princess|korona|zamek',subs:[]},
   {n:'Szafy dziecięce',ph:'szafa do pokoju dziecięcego',v:5400,b:['Szafy dziecięce'],subs:[]},
   {n:'Regały na zabawki',ph:'regał na zabawki',v:14800,b:['Regały'],s:['zabawk'],subs:[]},
   {n:'Półki dla dzieci',ph:'półka dla dzieci',v:480,b:['Półki / dla dzieci'],subs:[]},
@@ -149,6 +149,7 @@ const html=`<!doctype html><html lang="pl"><head><meta charset="utf-8"><meta nam
 <script>
 const DATA=${JSON.stringify(DATA)};
 function pretty(s){return s.replace(/-\\d+$/,'').replace(/[-_]/g,' ').trim().replace(/^./,c=>c.toUpperCase());}
+function clean(p){return (p||'').replace(/\\b(ikea|agata|allegro|opinie|cena|tanie|castorama|leroy|jysk|brw|halmar)\\b/gi,'').replace(/\\s+/g,' ').trim().replace(/^./,c=>c.toUpperCase());}
 function url(u){return u.startsWith('http')?u:'https://'+u;}
 function fmt(v){return v>=1000?(v/1000).toFixed(v>=10000?0:1).replace('.0','')+'k':String(v);}
 function cards(list){return list.map(p=>'<a class="pcard" href="'+url(p.u)+'" target="_blank" rel="noopener"><div class="pn">'+pretty(p.s)+'</div><div class="pu">'+p.u.replace('https://meblekobi.pl','')+'</div></a>').join('');}
@@ -161,7 +162,7 @@ function render(key){const d=DATA[key];const name=key.split('||')[1];const branc
  document.getElementById('hero').style.display='none';
  let h='<div class="crumb">'+name+' <small>w dziale '+branch+'</small></div>';
  h+='<div class="cmeta"><span class="pill hot">'+fmt(d.v)+' wyszukiwań/mc</span><span class="pill">fraza: '+d.ph+'</span><span class="pill">'+d.prods.length+' produktów</span></div>';
- if(d.subs&&d.subs.length){h+='<div class="chips"><button class="chip active" data-re="">Wszystkie <b>'+d.prods.length+'</b></button>';d.subs.forEach(s=>{const c=d.prods.filter(p=>new RegExp(s.re).test(p.s)).length;h+='<button class="chip" data-re="'+s.re+'">'+s.n+' <b>'+c+'</b> <span class="cv">'+fmt(s.v)+'</span></button>';});h+='</div>';}
+ if(d.subs&&d.subs.length){h+='<div class="chips"><button class="chip active" data-re="">Wszystkie <b>'+d.prods.length+'</b></button>';d.subs.forEach(s=>{const c=d.prods.filter(p=>new RegExp(s.re).test(p.s)).length;h+='<button class="chip" data-re="'+s.re+'">'+clean(s.ph)+' <b>'+c+'</b> <span class="cv">'+fmt(s.v)+'</span></button>';});h+='</div>';}
  h+=d.prods.length?'<div class="plist" id="pl">'+cards(d.prods)+'</div>':'<div class="empty">Kategoria koncepcyjna lub do dosourcingu.</div>';
  return h;}
 document.querySelectorAll('.mcat').forEach(c=>c.addEventListener('click',()=>{cur=c.dataset.key;closeMega();document.getElementById('main').innerHTML=render(cur);window.scrollTo({top:0,behavior:'smooth'});}));
