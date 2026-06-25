@@ -107,38 +107,20 @@ const DATA={};let totalProd=0;const seen=new Set();
 let nav='';let megas='';
 for(const [bi,br] of T.entries()){
   nav+=`<button class="navitem" data-bi="${bi}">${esc(br.br)}<svg viewBox="0 0 10 6" class="caret"><path d="M1 1l4 4 4-4"/></svg></button>`;
-  // zawsze populujemy DATA + budujemy kolumnę per kategoria
-  const colOf={};
-  for(const cat of br.cats){
+  // DWA PANELE: lewy = lista kategorii, prawy = podkategorie najechanej kategorii (jak meble.pl)
+  let left=''; let panels='';
+  br.cats.forEach((cat,ci)=>{
     const prods=pick(cat.b,cat.s,cat.re);prods.forEach(p=>{if(!seen.has(p.url)){seen.add(p.url);totalProd++;}});
     const key=br.br+'||'+cat.n;
     const subs=subsFor(cat);
     DATA[key]={ph:cat.ph,v:cat.v,prods:prods.map(p=>({u:p.url,s:p.slug})),subs};
+    const mid=bi+'-'+ci;
+    left+=`<button class="mleft" data-mr="${mid}" data-key="${esc(key)}">${esc(cat.n)}<span>${prods.length}</span></button>`;
     let subsH='';
     for(const s of subs){const c=prods.filter(p=>new RegExp(s.re).test(p.slug)).length;if(c>0)subsH+=`<button class="msub" data-key="${esc(key)}" data-re="${esc(s.re)}">${esc(s.n)} <i>${c}</i></button>`;}
-    colOf[cat.n]={key,prods:prods.length,col:`<div class="mcol"><button class="mcol-h" data-key="${esc(key)}">${esc(cat.n)} <span>${prods.length}</span></button>${subsH}</div>`};
-  }
-  let cards='';
-  if(br.br==='Meble'){
-    // GRUPY typów = jedna pozycja + podtypy jako podlinki (jak meble.pl)
-    const GROUPS=[
-      {name:'Łóżka',match:c=>/^Łóżka/.test(c.n),head:'Meble||Łóżka dziecięce'},
-      {name:'Biurka',match:c=>/^Biurka/.test(c.n),head:'Meble||Biurka'},
-      {name:'Szafy i garderoby',match:c=>c.n==='Garderoby i szafy'||c.n==='Szafy dziecięce',head:'Meble||Garderoby i szafy'},
-    ];
-    const used=new Set();
-    for(const g of GROUPS){
-      const mem=br.cats.filter(g.match); if(mem.length<2){continue;}
-      mem.forEach(c=>used.add(c.n));
-      const tot=mem.reduce((a,c)=>a+colOf[c.n].prods,0);
-      const subs=mem.map(c=>`<button class="msub" data-key="${esc('Meble||'+c.n)}" data-re="">${esc(c.n)} <i>${colOf[c.n].prods}</i></button>`).join('');
-      cards+=`<div class="mcol"><button class="mcol-h" data-key="${esc(g.head)}">${esc(g.name)} <span>${tot}</span></button>${subs}</div>`;
-    }
-    for(const cat of br.cats){ if(used.has(cat.n))continue; cards+=colOf[cat.n].col; }
-  } else {
-    for(const cat of br.cats) cards+=colOf[cat.n].col;
-  }
-  megas+=`<div class="mega" data-mega="${bi}"><div class="mega-inner"><div class="mega-head">${esc(br.br)}</div><div class="mgrid">${cards}</div></div></div>`;
+    panels+=`<div class="mr-panel" data-mr="${mid}"><button class="mr-all" data-key="${esc(key)}">${esc(cat.n)} — wszystkie (${prods.length})</button>${subsH?`<div class="mr-subs">${subsH}</div>`:'<div class="mr-empty">Brak dalszego podziału</div>'}</div>`;
+  });
+  megas+=`<div class="mega" data-mega="${bi}"><div class="mega-inner mega2"><div class="mega-left">${left}</div><div class="mega-right">${panels}</div></div></div>`;
 }
 
 const html=`<!doctype html><html lang="pl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
@@ -161,12 +143,19 @@ const html=`<!doctype html><html lang="pl"><head><meta charset="utf-8"><meta nam
 .mega.open{display:block}
 .mega-inner{max-width:1280px;margin:0 auto;padding:22px 24px 26px}
 .mega-head{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:18px;margin-bottom:16px;color:oklch(0.25 0.04 260)}.mega-head span{font-family:Manrope;font-weight:500;font-size:13px;color:var(--mut);margin-left:10px}
-.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:20px 26px;align-items:start;max-height:72vh;overflow:auto}
-.mcol{display:flex;flex-direction:column;break-inside:avoid}
-.mcol-h{background:none;border:0;border-bottom:2px solid var(--acc);padding:0 0 6px;margin-bottom:6px;text-align:left;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:14px;color:var(--ink);display:flex;justify-content:space-between;align-items:baseline;gap:8px}
-.mcol-h:hover{color:var(--acc)}.mcol-h span{font-size:11px;color:var(--mut);font-weight:500}
-.msub{background:none;border:0;padding:5px 0;text-align:left;cursor:pointer;font:inherit;font-size:13px;color:var(--mut);display:flex;justify-content:space-between;gap:8px;line-height:1.3}
+.mega2{display:flex;max-height:50vh}
+.mega-left{width:300px;flex-shrink:0;border-right:1px solid var(--line);overflow:auto;padding-right:8px}
+.mleft{width:100%;display:flex;justify-content:space-between;align-items:center;gap:10px;background:none;border:0;border-radius:8px;padding:9px 12px;text-align:left;cursor:pointer;font:inherit;font-size:14px;color:var(--ink)}
+.mleft span{font-size:11px;color:var(--mut)}
+.mleft:hover,.mleft.active{background:var(--acc-soft);color:var(--acc)}.mleft.active span{color:var(--acc)}
+.mega-right{flex:1;overflow:auto;padding:2px 8px 2px 28px}
+.mr-panel{display:none}.mr-panel.active{display:block}
+.mr-all{background:none;border:0;border-bottom:2px solid var(--acc);padding:0 0 8px;margin-bottom:12px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:16px;color:var(--ink);cursor:pointer;text-align:left}
+.mr-all:hover{color:var(--acc)}
+.mr-subs{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:4px 18px}
+.msub{background:none;border:0;padding:6px 0;text-align:left;cursor:pointer;font:inherit;font-size:13px;color:var(--mut);display:flex;justify-content:space-between;gap:8px;line-height:1.3}
 .msub:hover{color:var(--acc)}.msub i{font-style:normal;font-size:11px;opacity:.55}
+.mr-empty{color:var(--mut);font-size:13px;padding:4px 0}
 .wrap{max-width:1280px;margin:0 auto;padding:28px 24px 60px}
 .hero{text-align:center;padding:30px 0 26px}.hero h1{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:clamp(22px,3vw,32px);margin:0 0 8px;letter-spacing:-.02em;color:oklch(0.25 0.04 260)}.hero p{color:var(--mut);margin:0 auto;max-width:60ch;font-size:14px}
 .stats{display:flex;gap:30px;justify-content:center;margin-top:18px}.stat b{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:22px;color:var(--acc);display:block}.stat span{color:var(--mut);font-size:11px;text-transform:uppercase;letter-spacing:.06em}
@@ -220,7 +209,13 @@ function render(key){const d=DATA[key];const name=key.split('||')[1];const branc
  if(vis.length){h+='<div class="subhead">Podkategorie ('+vis.length+'):</div><div class="subcats"><button class="subcat active" data-re=""><span class="scn">Wszystkie</span><span class="scc">'+d.prods.length+'</span></button>';vis.forEach(s=>{h+='<button class="subcat" data-re="'+s.re+'"><span class="scn">'+s.n+'</span><span class="scc">'+s.c+'</span></button>';});h+='</div>';}
  h+=d.prods.length?'<div class="plist" id="pl">'+cards(d.prods)+'</div>':'<div class="empty">Kategoria koncepcyjna lub do dosourcingu.</div>';
  return h;}
-document.querySelectorAll('.mcol-h').forEach(c=>c.addEventListener('click',()=>{cur=c.dataset.key;closeMega();document.getElementById('main').innerHTML=render(cur);window.scrollTo({top:0,behavior:'smooth'});}));
+document.querySelectorAll('.mega').forEach(m=>{
+  const lefts=[...m.querySelectorAll('.mleft')];const panels=[...m.querySelectorAll('.mr-panel')];
+  function act(mid){lefts.forEach(l=>l.classList.toggle('active',l.dataset.mr===mid));panels.forEach(p=>p.classList.toggle('active',p.dataset.mr===mid));}
+  lefts.forEach(l=>{l.addEventListener('mouseenter',()=>act(l.dataset.mr));l.addEventListener('click',()=>{cur=l.dataset.key;closeMega();document.getElementById('main').innerHTML=render(cur);window.scrollTo({top:0,behavior:'smooth'});});});
+  if(lefts[0])act(lefts[0].dataset.mr);
+});
+document.querySelectorAll('.mr-all').forEach(c=>c.addEventListener('click',()=>{cur=c.dataset.key;closeMega();document.getElementById('main').innerHTML=render(cur);window.scrollTo({top:0,behavior:'smooth'});}));
 document.querySelectorAll('.msub').forEach(c=>c.addEventListener('click',()=>{cur=c.dataset.key;const re=c.dataset.re;closeMega();document.getElementById('main').innerHTML=render(cur);const sc=[...document.querySelectorAll('.subcat')].find(x=>x.dataset.re===re);if(sc)sc.click();window.scrollTo({top:0,behavior:'smooth'});}));
 document.getElementById('main').addEventListener('click',e=>{const ch=e.target.closest('.subcat');if(!ch||!cur)return;ch.parentNode.querySelectorAll('.subcat').forEach(x=>x.classList.remove('active'));ch.classList.add('active');const re=ch.dataset.re;const list=re?DATA[cur].prods.filter(p=>new RegExp(re).test(p.s)):DATA[cur].prods;document.getElementById('pl').innerHTML=cards(list);});
 const q=document.getElementById('q');q.addEventListener('input',()=>{const t=q.value.trim().toLowerCase();const m=document.getElementById('main');document.getElementById('hero').style.display='none';if(t.length<2){m.innerHTML='<div class="empty">Wpisz min. 2 znaki albo wybierz kategorię z menu u góry.</div>';return;}let hits=[];for(const k in DATA)for(const p of DATA[k].prods)if(pretty(p.s).toLowerCase().includes(t))hits.push(p);m.innerHTML='<div class="crumb">Wyniki: '+t+' <small>'+hits.length+' produktów</small></div><div class="plist">'+cards(hits.slice(0,300))+'</div>';});
