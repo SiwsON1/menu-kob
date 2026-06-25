@@ -99,3 +99,9 @@ Kategoria „serca" usunięta: „uchwyty serduszka" w nazwie = kształt UCHWYT�
 łapał uchwyty jako motyw (EMMA wpadła w „serca"). Usunięto. Lekcja: tokeny „uchwyty X" to opis okucia, nie motyw.
 Dodano kategorie motywowe łóżek jako OSOBNE pozycje (jak interbeds/LanoMeble): Łóżka samochody/autka (24),
 ze zwierzątkami, dla księżniczki.
+
+## Per-produkt audyt 2026-06-25 (kolejne modele) — znalezione kategorie konkurencji
+- materac dziecięcy medyczny → "materace rehabilitacyjne/ortopedyczne dziecięce" (świat sypialni, plantpur). Mamy (materace medyczne 20).
+- zestaw mebli do salonu (ICARO/ERCOL/FREYA) → **"Meblościanki / zestawy mebli do salonu"** (allegro, ceneo, favi). NOWA kategoria, KOBI ma 26 (były w koszu RTV). DODANE.
+- krzesło obrotowe dziecięce → "krzesła do biurka dla dzieci / obrotowe" (centrumkrzesel, ikea, meblik). Mamy w Biurze.
+- łóżko montessori podłogowe → **"Łóżka Montessori"** (lanomeble /montessori, valor, fumio). NOWA osobna kategoria, KOBI 16. DODANE.
