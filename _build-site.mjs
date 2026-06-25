@@ -120,12 +120,21 @@ for(const [bi,br] of T.entries()){
   }
   let cards='';
   if(br.br==='Meble'){
-    // GRUPA "Łóżka" = jedna pozycja, podtypy łóżek jako podlinki (jak meble.pl)
-    const beds=br.cats.filter(c=>/^Łóżka/.test(c.n));
-    const bedTot=beds.reduce((a,c)=>a+colOf[c.n].prods,0);
-    let bedSubs=beds.map(c=>`<button class="msub" data-key="${esc('Meble||'+c.n)}" data-re="">${esc(c.n)} <i>${colOf[c.n].prods}</i></button>`).join('');
-    cards+=`<div class="mcol"><button class="mcol-h" data-key="${esc('Meble||Łóżka dziecięce')}">Łóżka <span>${bedTot}</span></button>${bedSubs}</div>`;
-    for(const cat of br.cats){ if(/^Łóżka/.test(cat.n)||cat.n==='Barierki i stelaże')continue; cards+=colOf[cat.n].col; }
+    // GRUPY typów = jedna pozycja + podtypy jako podlinki (jak meble.pl)
+    const GROUPS=[
+      {name:'Łóżka',match:c=>/^Łóżka/.test(c.n),head:'Meble||Łóżka dziecięce'},
+      {name:'Biurka',match:c=>/^Biurka/.test(c.n),head:'Meble||Biurka'},
+      {name:'Szafy i garderoby',match:c=>c.n==='Garderoby i szafy'||c.n==='Szafy dziecięce',head:'Meble||Garderoby i szafy'},
+    ];
+    const used=new Set();
+    for(const g of GROUPS){
+      const mem=br.cats.filter(g.match); if(mem.length<2){continue;}
+      mem.forEach(c=>used.add(c.n));
+      const tot=mem.reduce((a,c)=>a+colOf[c.n].prods,0);
+      const subs=mem.map(c=>`<button class="msub" data-key="${esc('Meble||'+c.n)}" data-re="">${esc(c.n)} <i>${colOf[c.n].prods}</i></button>`).join('');
+      cards+=`<div class="mcol"><button class="mcol-h" data-key="${esc(g.head)}">${esc(g.name)} <span>${tot}</span></button>${subs}</div>`;
+    }
+    for(const cat of br.cats){ if(used.has(cat.n))continue; cards+=colOf[cat.n].col; }
   } else {
     for(const cat of br.cats) cards+=colOf[cat.n].col;
   }
