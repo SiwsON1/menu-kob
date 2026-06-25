@@ -111,10 +111,13 @@ for(const [bi,br] of T.entries()){
   for(const cat of br.cats){
     const prods=pick(cat.b,cat.s,cat.re);prods.forEach(p=>{if(!seen.has(p.url)){seen.add(p.url);totalProd++;}});
     const key=br.br+'||'+cat.n;
-    DATA[key]={ph:cat.ph,v:cat.v,prods:prods.map(p=>({u:p.url,s:p.slug})),subs:subsFor(cat)};
-    cards+=`<button class="mcat" data-key="${esc(key)}"><span class="mn">${esc(cat.n)}</span><span class="mm"><span class="mv">${fmt(cat.v)}/mc</span><span class="mc">${prods.length}</span></span></button>`;
+    const subs=subsFor(cat);
+    DATA[key]={ph:cat.ph,v:cat.v,prods:prods.map(p=>({u:p.url,s:p.slug})),subs};
+    let subsH='';
+    for(const s of subs){const c=prods.filter(p=>new RegExp(s.re).test(p.slug)).length;if(c>0)subsH+=`<button class="msub" data-key="${esc(key)}" data-re="${esc(s.re)}">${esc(s.n)} <i>${c}</i></button>`;}
+    cards+=`<div class="mcol"><button class="mcol-h" data-key="${esc(key)}">${esc(cat.n)} <span>${prods.length}</span></button>${subsH}</div>`;
   }
-  megas+=`<div class="mega" data-mega="${bi}"><div class="mega-inner"><div class="mega-head">${esc(br.br)}<span>wybierz kategorię</span></div><div class="mgrid">${cards}</div></div></div>`;
+  megas+=`<div class="mega" data-mega="${bi}"><div class="mega-inner"><div class="mega-head">${esc(br.br)}</div><div class="mgrid">${cards}</div></div></div>`;
 }
 
 const html=`<!doctype html><html lang="pl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
@@ -137,9 +140,12 @@ const html=`<!doctype html><html lang="pl"><head><meta charset="utf-8"><meta nam
 .mega.open{display:block}
 .mega-inner{max-width:1280px;margin:0 auto;padding:22px 24px 26px}
 .mega-head{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:18px;margin-bottom:16px;color:oklch(0.25 0.04 260)}.mega-head span{font-family:Manrope;font-weight:500;font-size:13px;color:var(--mut);margin-left:10px}
-.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:8px}
-.mcat{display:flex;justify-content:space-between;align-items:center;gap:10px;background:var(--panel2);border:1px solid transparent;border-radius:12px;padding:12px 14px;cursor:pointer;text-align:left;font:inherit;color:var(--ink)}
-.mcat:hover{background:#fff;border-color:var(--acc);box-shadow:var(--shadow)}.mn{font-weight:600;font-size:14px}.mm{display:flex;flex-direction:column;align-items:flex-end;gap:3px}.mv{font-size:11px;color:var(--hot);font-weight:700;background:var(--hot-soft);padding:2px 8px;border-radius:20px;white-space:nowrap}.mc{font-size:12px;color:var(--mut);font-variant-numeric:tabular-nums}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:20px 26px;align-items:start;max-height:72vh;overflow:auto}
+.mcol{display:flex;flex-direction:column;break-inside:avoid}
+.mcol-h{background:none;border:0;border-bottom:2px solid var(--acc);padding:0 0 6px;margin-bottom:6px;text-align:left;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:14px;color:var(--ink);display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.mcol-h:hover{color:var(--acc)}.mcol-h span{font-size:11px;color:var(--mut);font-weight:500}
+.msub{background:none;border:0;padding:5px 0;text-align:left;cursor:pointer;font:inherit;font-size:13px;color:var(--mut);display:flex;justify-content:space-between;gap:8px;line-height:1.3}
+.msub:hover{color:var(--acc)}.msub i{font-style:normal;font-size:11px;opacity:.55}
 .wrap{max-width:1280px;margin:0 auto;padding:28px 24px 60px}
 .hero{text-align:center;padding:30px 0 26px}.hero h1{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:clamp(22px,3vw,32px);margin:0 0 8px;letter-spacing:-.02em;color:oklch(0.25 0.04 260)}.hero p{color:var(--mut);margin:0 auto;max-width:60ch;font-size:14px}
 .stats{display:flex;gap:30px;justify-content:center;margin-top:18px}.stat b{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:22px;color:var(--acc);display:block}.stat span{color:var(--mut);font-size:11px;text-transform:uppercase;letter-spacing:.06em}
@@ -193,7 +199,8 @@ function render(key){const d=DATA[key];const name=key.split('||')[1];const branc
  if(vis.length){h+='<div class="subhead">Podkategorie ('+vis.length+'):</div><div class="subcats"><button class="subcat active" data-re=""><span class="scn">Wszystkie</span><span class="scc">'+d.prods.length+'</span></button>';vis.forEach(s=>{h+='<button class="subcat" data-re="'+s.re+'"><span class="scn">'+s.n+'</span><span class="scc">'+s.c+'</span></button>';});h+='</div>';}
  h+=d.prods.length?'<div class="plist" id="pl">'+cards(d.prods)+'</div>':'<div class="empty">Kategoria koncepcyjna lub do dosourcingu.</div>';
  return h;}
-document.querySelectorAll('.mcat').forEach(c=>c.addEventListener('click',()=>{cur=c.dataset.key;closeMega();document.getElementById('main').innerHTML=render(cur);window.scrollTo({top:0,behavior:'smooth'});}));
+document.querySelectorAll('.mcol-h').forEach(c=>c.addEventListener('click',()=>{cur=c.dataset.key;closeMega();document.getElementById('main').innerHTML=render(cur);window.scrollTo({top:0,behavior:'smooth'});}));
+document.querySelectorAll('.msub').forEach(c=>c.addEventListener('click',()=>{cur=c.dataset.key;const re=c.dataset.re;closeMega();document.getElementById('main').innerHTML=render(cur);const sc=[...document.querySelectorAll('.subcat')].find(x=>x.dataset.re===re);if(sc)sc.click();window.scrollTo({top:0,behavior:'smooth'});}));
 document.getElementById('main').addEventListener('click',e=>{const ch=e.target.closest('.subcat');if(!ch||!cur)return;ch.parentNode.querySelectorAll('.subcat').forEach(x=>x.classList.remove('active'));ch.classList.add('active');const re=ch.dataset.re;const list=re?DATA[cur].prods.filter(p=>new RegExp(re).test(p.s)):DATA[cur].prods;document.getElementById('pl').innerHTML=cards(list);});
 const q=document.getElementById('q');q.addEventListener('input',()=>{const t=q.value.trim().toLowerCase();const m=document.getElementById('main');document.getElementById('hero').style.display='none';if(t.length<2){m.innerHTML='<div class="empty">Wpisz min. 2 znaki albo wybierz kategorię z menu u góry.</div>';return;}let hits=[];for(const k in DATA)for(const p of DATA[k].prods)if(pretty(p.s).toLowerCase().includes(t))hits.push(p);m.innerHTML='<div class="crumb">Wyniki: '+t+' <small>'+hits.length+' produktów</small></div><div class="plist">'+cards(hits.slice(0,300))+'</div>';});
 </script></body></html>`;
