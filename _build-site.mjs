@@ -21,7 +21,7 @@ const T=[
   {n:'Łóżka dla dziewczynki księżniczka',ph:'łóżko dla dziewczynki księżniczka',v:260,b:BEDB2,re:'ksiezniczk|princess|korona|zamek',subs:[]},
   {n:'Szafy dziecięce',ph:'szafa do pokoju dziecięcego',v:5400,b:['Szafy dziecięce'],subs:[]},
   {n:'Regały na zabawki',ph:'regał na zabawki',v:14800,b:['Regały'],s:['zabawk'],subs:[]},
-  {n:'Półki dla dzieci',ph:'półka dla dzieci',v:480,b:['Półki / dla dzieci'],subs:[]},
+  {n:'Półki ścienne dla dzieci',ph:'półka ścienna dla dzieci',v:480,b:['Półki / dla dzieci'],subs:[]},
   {n:'Skrzynie na zabawki',ph:'skrzynia na zabawki',v:5400,b:['Skrzynie na zabawki'],subs:[]},
   {n:'Krzesełka i stoliki dziecięce',ph:'stolik i krzesełko dla dziecka',v:880,b:['Stoliki+krzesełka dziecięce','Krzesła dziecięce ergonomiczne'],subs:[]},
  ]},
@@ -60,7 +60,7 @@ const T=[
  {br:'Przedpokój', cats:[
   {n:'Szafki na buty',ph:'szafka na buty',v:2900,b:['Szafki na buty'],subs:[]},
   {n:'Wieszaki do przedpokoju',ph:'wieszak do przedpokoju',v:18100,b:['Wieszaki'],subs:[]},
-  {n:'Konsole',ph:'konsola',v:18100,b:['Przedpokój (zestawy/konsole)'],subs:[]},
+  {n:'Konsole do przedpokoju',ph:'konsola do przedpokoju',v:18100,b:['Przedpokój (zestawy/konsole)'],subs:[]},
  ]},
  {br:'Ogród', cats:[{n:'Meble ogrodowe',ph:'meble ogrodowe',v:135000,b:['Meble ogrodowe'],subs:[]}]},
  {br:'Akcesoria', cats:[
