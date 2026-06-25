@@ -47,8 +47,9 @@ const T=[
   {n:'Szafki RTV',ph:'szafka rtv',v:49500,b:['Szafki RTV'],subs:[{n:'białe',ph:'szafka rtv biała',v:3600,s:['bial']},{n:'dąb',ph:'szafka rtv dąb',v:1300,s:['dab']},{n:'czarne',ph:'szafka rtv czarna',v:2400,s:['czarn']},{n:'wiszące',ph:'szafka rtv wisząca',v:9900,s:['wiszac']}]},
   {n:'Krzesła do jadalni',ph:'krzesła do jadalni',v:74000,b:['Krzesła (jadalnia/obrotowe)'],subs:[]},
   {n:'Kanapy i narożniki',ph:'narożnik rozkładany',v:18100,b:['Kanapy/narożniki/sofy'],subs:[{n:'z funkcją spania',ph:'kanapa z funkcją spania',v:8100,s:['spania']}]},
-  {n:'Fotele',ph:'fotel',v:49500,b:['Fotele/pufy/ławki'],s:['fotel'],subs:[]},
-  {n:'Pufy',ph:'pufa',v:12100,b:['Fotele/pufy/ławki'],s:['puf'],subs:[]},
+  {n:'Fotele wypoczynkowe',ph:'fotele wypoczynkowe',v:49500,b:['Fotele/pufy/ławki'],s:['fotel'],subs:[]},
+  {n:'Pufy i podnóżki',ph:'pufy i podnóżki',v:12100,b:['Fotele/pufy/ławki'],s:['puf'],subs:[]},
+  {n:'Ławki tapicerowane',ph:'ławka tapicerowana',v:1900,b:['Fotele/pufy/ławki'],s:['lawk'],subs:[]},
   {n:'Taborety i hokery barowe',ph:'hoker barowy',v:18100,b:['Taborety / hokery barowe'],subs:[]},
   {n:'Regały',ph:'regał',v:27100,b:['Regały'],subs:[]},
  ]},
@@ -58,7 +59,7 @@ const T=[
  ]},
  {br:'Przedpokój', cats:[
   {n:'Szafki na buty',ph:'szafka na buty',v:2900,b:['Szafki na buty'],subs:[]},
-  {n:'Wieszaki',ph:'wieszak do przedpokoju',v:18100,b:['Wieszaki'],subs:[]},
+  {n:'Wieszaki do przedpokoju',ph:'wieszak do przedpokoju',v:18100,b:['Wieszaki'],subs:[]},
   {n:'Konsole',ph:'konsola',v:18100,b:['Przedpokój (zestawy/konsole)'],subs:[]},
  ]},
  {br:'Ogród', cats:[{n:'Meble ogrodowe',ph:'meble ogrodowe',v:135000,b:['Meble ogrodowe'],subs:[]}]},
@@ -70,7 +71,7 @@ const T=[
 
 // pełna dekompozycja podkategorii (z _decompose-all.mjs)
 const DEC=JSON.parse(fs.readFileSync('strategia/subcats-all.json','utf8'));
-const DKMAP={'Łóżka dziecięce':'Łóżka dziecięce','Łóżka piętrowe':'Łóżka piętrowe','Łóżka młodzieżowe':'Łóżka młodzieżowe','Łóżka podwójne':'Łóżka podwójne','Komody':'Komody','Szafki nocne':'Szafki nocne','Szafki RTV':'Szafki RTV','Biurka':'Biurka','Stoły do jadalni':'Stoły','Stoliki kawowe i ławy':'Stoliki kawowe / ławy','Krzesła do jadalni':'Krzesła','Kanapy i narożniki':'Kanapy / narożniki','Fotele':'Fotele / pufy','Pufy':'Fotele / pufy','Regały':'Regały','Regały na zabawki':'Regały','Materace':'Materace','Toaletki':'Toaletki','Meble łazienkowe na wymiar':'Meble łazienkowe','Szafki na buty':'Szafki na buty','Szafy dziecięce':'Szafy / garderoby','Garderoby':'Szafy / garderoby'};
+const DKMAP={'Łóżka dziecięce':'Łóżka dziecięce','Łóżka piętrowe':'Łóżka piętrowe','Łóżka młodzieżowe':'Łóżka młodzieżowe','Łóżka podwójne':'Łóżka podwójne','Komody':'Komody','Szafki nocne':'Szafki nocne','Szafki RTV':'Szafki RTV','Biurka':'Biurka','Stoły do jadalni':'Stoły','Stoliki kawowe i ławy':'Stoliki kawowe / ławy','Krzesła do jadalni':'Krzesła','Kanapy i narożniki':'Kanapy / narożniki','Fotele wypoczynkowe':'Fotele / pufy','Pufy i podnóżki':'Fotele / pufy','Regały':'Regały','Regały na zabawki':'Regały','Materace':'Materace','Toaletki':'Toaletki','Meble łazienkowe na wymiar':'Meble łazienkowe','Szafki na buty':'Szafki na buty','Szafy dziecięce':'Szafy / garderoby','Garderoby i szafy':'Szafy / garderoby'};
 function subsFor(cat){const dk=DKMAP[cat.n];if(dk&&DEC[dk]&&DEC[dk].length)return DEC[dk].map(s=>({n:s.n,ph:s.ph,v:s.v,re:s.re}));return (cat.subs||[]).map(s=>({n:s.n,ph:s.ph,v:s.v,re:s.s.join('|')}));}
 
 // "MEBLE" = pierwsze wejście: wszystkie typy A-Z (jak meble.pl). Pokoje zostają jako drugi sposób.
@@ -170,4 +171,19 @@ document.getElementById('main').addEventListener('click',e=>{const ch=e.target.c
 const q=document.getElementById('q');q.addEventListener('input',()=>{const t=q.value.trim().toLowerCase();const m=document.getElementById('main');document.getElementById('hero').style.display='none';if(t.length<2){m.innerHTML='<div class="empty">Wpisz min. 2 znaki albo wybierz kategorię z menu u góry.</div>';return;}let hits=[];for(const k in DATA)for(const p of DATA[k].prods)if(pretty(p.s).toLowerCase().includes(t))hits.push(p);m.innerHTML='<div class="crumb">Wyniki: '+t+' <small>'+hits.length+' produktów</small></div><div class="plist">'+cards(hits.slice(0,300))+'</div>';});
 </script></body></html>`;
 fs.writeFileSync('index.html',html);
-console.log('OK index.html ('+(html.length/1024).toFixed(0)+'KB), produktów:',totalProd,'kategorii:',Object.keys(DATA).length);
+// EKSPORT dowodu: kazdy produkt -> kategoria + dopasowane podkategorie (keyword)
+let pc='url;produkt;dzial;kategoria;podkategorie(frazy-cele)\n';let cov=0;const covered=new Set();
+for(const p of all){
+  for(const br of T){ if(br.br==='Meble')continue;
+    for(const cat of br.cats){
+      if(!cat.b.includes(p.b))continue;
+      if(cat.s&&!cat.s.every(t=>p.slug.includes(t)))continue;
+      if(cat.re&&!new RegExp(cat.re).test(p.slug))continue;
+      const dk=DKMAP[cat.n];const subs=(dk&&DEC[dk])?DEC[dk]:[];
+      const msub=subs.filter(s=>new RegExp(s.re).test(p.slug)).map(s=>s.ph).join(' | ');
+      pc+=`${p.url};${p.slug};${br.br};${cat.n};${msub}\n`;covered.add(p.url);
+    }
+  }
+}
+fs.writeFileSync('strategia/produkt-kategorie-2026-06-25.csv',pc);
+console.log('OK index.html, produktów:',totalProd,'| eksport produkt->kategorie: pokrytych',covered.size,'z',all.length);
