@@ -71,10 +71,28 @@ const T=[
  ]},
 ];
 
-// pełna dekompozycja podkategorii (z _decompose-all.mjs)
-const DEC=JSON.parse(fs.readFileSync('strategia/subcats-all.json','utf8'));
+// CZYSTE, ręcznie skontrolowane podkategorie (nazwa = keyword, re = filtr slug). Bez duplikatów, poprawne przypisanie.
+const CLEANSUBS={
+ 'Łóżka dziecięce':[
+   {n:'Łóżko dziecięce 160x80',re:'160x80'},{n:'Łóżko dziecięce 140x70',re:'140x70'},{n:'Łóżko dziecięce 180x80',re:'180x80'},
+   {n:'Łóżko z barierką',re:'barierk'},{n:'Łóżko z szufladą',re:'szuflad'},{n:'Łóżko z materacem',re:'z-materac'},
+   {n:'Łóżko dla dziewczynki',re:'dziewczynk|rozow'},{n:'Łóżko białe',re:'bialy|biale'},{n:'Łóżko dąb',re:'dab|artisan'}],
+ 'Łóżka podwójne':[{n:'Łóżko 160x200',re:'160x200'},{n:'Łóżko 140x200',re:'140x200'},{n:'Łóżko z pojemnikiem',re:'pojemnik'},{n:'Łóżko tapicerowane',re:'tapicerowan'}],
+ 'Łóżka piętrowe':[{n:'Łóżko piętrowe domek',re:'domek'},{n:'Łóżko piętrowe 80x180',re:'80x180'},{n:'Łóżko piętrowe 80x160',re:'80x160'}],
+ 'Komody':[{n:'Komoda biała',re:'bialy|biala'},{n:'Komoda dąb',re:'dab|artisan|sonoma'},{n:'Komoda czarna',re:'czarn'},{n:'Komoda kaszmir',re:'kaszmir'},{n:'Komoda z szufladami',re:'szuflad'},{n:'Komoda na nóżkach',re:'nogi|nozk'},{n:'Komoda skandynawska',re:'skandynaw'},{n:'Komoda loft',re:'loft'}],
+ 'Szafki nocne':[{n:'Szafka nocna biała',re:'bialy|biala'},{n:'Szafka nocna dąb',re:'dab|sonoma'},{n:'Szafka nocna czarna',re:'czarn'},{n:'Szafka nocna z szufladą',re:'szuflad'}],
+ 'Szafki RTV':[{n:'Szafka RTV biała',re:'bialy|biala'},{n:'Szafka RTV dąb',re:'dab|artisan'},{n:'Szafka RTV czarna',re:'czarn'},{n:'Szafka RTV wisząca',re:'wiszac'},{n:'Szafka RTV na nóżkach',re:'nogi|nozk'},{n:'Szafka RTV z półkami',re:'polk'},{n:'Szafka RTV loft',re:'loft'}],
+ 'Biurka':[{n:'Biurko białe',re:'bialy|biale'},{n:'Biurko dąb',re:'dab|artisan|sonoma'},{n:'Biurko komputerowe',re:'komputerow'},{n:'Biurko z szufladami',re:'szuflad'}],
+ 'Stoliki kawowe i ławy':[{n:'Stolik kawowy okrągły',re:'okragl'},{n:'Stolik kawowy dąb',re:'dab|artisan|sonoma'},{n:'Stolik kawowy czarny',re:'czarn'},{n:'Stolik kawowy marmur',re:'marmur'},{n:'Ława do salonu',re:'lawa'}],
+ 'Stoły do jadalni':[{n:'Stół okrągły',re:'okragl'},{n:'Stół rozkładany',re:'rozkladan'},{n:'Stół dąb',re:'dab|artisan|sonoma'},{n:'Stół marmur',re:'marmur'}],
+ 'Materace':[{n:'Materac kieszeniowy',re:'kieszeniow'},{n:'Materac kokosowy',re:'kokos'},{n:'Materac piankowy',re:'piankow|pianka'},{n:'Materac medyczny',re:'medyczn'},{n:'Materac termoelastyczny',re:'visco|termoelast'}],
+ 'Regały':[{n:'Regał na książki',re:'ksiazk'},{n:'Regał dąb',re:'dab|artisan|craft'},{n:'Regał biały',re:'bialy|biale'},{n:'Regał otwarty',re:'otwart'}],
+ 'Szafki na buty':[{n:'Szafka na buty biała',re:'bialy|biala'},{n:'Szafka na buty dąb',re:'dab|sonoma'},{n:'Szafka na buty z siedziskiem',re:'siedzisk'}],
+ 'Meble łazienkowe na wymiar':[{n:'Szafka pod umywalkę',re:'umywalk'},{n:'Słupek łazienkowy',re:'slupek'},{n:'Blat kuchenny',re:'blat'},{n:'Szafka z lustrem',re:'lustr'},{n:'Szafka nad pralkę',re:'pralk'}],
+ 'Garderoby i szafy':[{n:'Szafa dwudrzwiowa',re:'dwudrzwiow'},{n:'Szafa z szufladami',re:'szuflad'},{n:'Garderoba',re:'garderob'}],
+};
 const DKMAP={'Łóżka dziecięce':'Łóżka dziecięce','Łóżka piętrowe':'Łóżka piętrowe','Łóżka młodzieżowe':'Łóżka młodzieżowe','Łóżka podwójne':'Łóżka podwójne','Komody':'Komody','Szafki nocne':'Szafki nocne','Szafki RTV':'Szafki RTV','Biurka':'Biurka','Stoły do jadalni':'Stoły','Stoliki kawowe i ławy':'Stoliki kawowe / ławy','Krzesła do jadalni':'Krzesła','Kanapy i narożniki':'Kanapy / narożniki','Fotele wypoczynkowe':'Fotele / pufy','Pufy i podnóżki':'Fotele / pufy','Regały':'Regały','Regały na zabawki':'Regały','Materace':'Materace','Toaletki':'Toaletki','Meble łazienkowe na wymiar':'Meble łazienkowe','Szafki na buty':'Szafki na buty','Szafy dziecięce':'Szafy / garderoby','Garderoby i szafy':'Szafy / garderoby'};
-function subsFor(cat){const dk=DKMAP[cat.n];if(dk&&DEC[dk]&&DEC[dk].length)return DEC[dk].map(s=>({n:s.n,ph:s.ph,v:s.v,re:s.re}));return (cat.subs||[]).map(s=>({n:s.n,ph:s.ph,v:s.v,re:s.s.join('|')}));}
+function subsFor(cat){ if(CLEANSUBS[cat.n]) return CLEANSUBS[cat.n].map(s=>({n:s.n,re:s.re})); return (cat.subs||[]).map(s=>({n:s.n,re:s.s.join('|')})); }
 
 // "MEBLE" = pierwsze wejście: wszystkie typy A-Z (jak meble.pl). Pokoje zostają jako drugi sposób.
 const allCats=[];const seenN=new Set();
@@ -165,7 +183,7 @@ function render(key){const d=DATA[key];const name=key.split('||')[1];const branc
  document.getElementById('hero').style.display='none';
  let h='<div class="crumb">'+name+' <small>w dziale '+branch+'</small></div>';
  h+='<div class="cmeta"><span class="pill hot">'+fmt(d.v)+' wyszukiwań/mc</span><span class="pill">fraza: '+d.ph+'</span><span class="pill">'+d.prods.length+' produktów</span></div>';
- if(d.subs&&d.subs.length){h+='<div class="chips"><button class="chip active" data-re="">Wszystkie <b>'+d.prods.length+'</b></button>';d.subs.forEach(s=>{const c=d.prods.filter(p=>new RegExp(s.re).test(p.s)).length;h+='<button class="chip" data-re="'+s.re+'">'+clean(s.ph)+' <b>'+c+'</b> <span class="cv">'+fmt(s.v)+'</span></button>';});h+='</div>';}
+ if(d.subs&&d.subs.length){h+='<div class="chips"><button class="chip active" data-re="">Wszystkie <b>'+d.prods.length+'</b></button>';d.subs.forEach(s=>{const c=d.prods.filter(p=>new RegExp(s.re).test(p.s)).length;if(c>0)h+='<button class="chip" data-re="'+s.re+'">'+s.n+' <b>'+c+'</b></button>';});h+='</div>';}
  h+=d.prods.length?'<div class="plist" id="pl">'+cards(d.prods)+'</div>':'<div class="empty">Kategoria koncepcyjna lub do dosourcingu.</div>';
  return h;}
 document.querySelectorAll('.mcat').forEach(c=>c.addEventListener('click',()=>{cur=c.dataset.key;closeMega();document.getElementById('main').innerHTML=render(cur);window.scrollTo({top:0,behavior:'smooth'});}));
@@ -181,11 +199,21 @@ for(const p of all){
       if(!cat.b.includes(p.b))continue;
       if(cat.s&&!cat.s.every(t=>p.slug.includes(t)))continue;
       if(cat.re&&!new RegExp(cat.re).test(p.slug))continue;
-      const dk=DKMAP[cat.n];const subs=(dk&&DEC[dk])?DEC[dk]:[];
-      const msub=subs.filter(s=>new RegExp(s.re).test(p.slug)).map(s=>s.ph).join(' | ');
+      const subs=CLEANSUBS[cat.n]||[];
+      const msub=subs.filter(s=>new RegExp(s.re).test(p.slug)).map(s=>s.n).join(' | ');
       pc+=`${p.url};${p.slug};${br.br};${cat.n};${msub}\n`;covered.add(p.url);
     }
   }
 }
 fs.writeFileSync('strategia/produkt-kategorie-2026-06-25.csv',pc);
+// PELNA LISTA kategorii + podkategorii (nazwy)
+function cap(p){return (p||'').replace(/^./,c=>c.toUpperCase());}
+let ol='# PEŁNA LISTA KATEGORII meblekobi.pl (nazwy = frazy-cele)\n';
+for(const br of T){ if(br.br==='Meble')continue; ol+='\n## '+br.br+'\n';
+  for(const cat of br.cats){ const key=br.br+'||'+cat.n; const d=DATA[key]||{prods:[],subs:[]};
+    ol+='- **'+cat.n+'** — '+d.prods.length+' prod. ('+fmt(cat.v)+'/mc)\n';
+    (d.subs||[]).forEach(s=>{const c=d.prods.filter(p=>new RegExp(s.re).test(p.s)).length; if(c>0) ol+='   - '+s.n+' ('+c+' prod.)\n';});
+  }
+}
+fs.writeFileSync('strategia/PELNA-LISTA-KATEGORII.md',ol);
 console.log('OK index.html, produktów:',totalProd,'| eksport produkt->kategorie: pokrytych',covered.size,'z',all.length);
