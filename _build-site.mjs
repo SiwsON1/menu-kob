@@ -1,7 +1,8 @@
 import fs from 'fs';
 const csv=fs.readFileSync('produkty-mapowanie-FINAL-2026-06-19.csv','utf8').trim().split(/\r?\n/);csv.shift();
 const all=[];for(const l of csv){const m=l.match(/^([^,]+),"?(.*?)"?,"?(.*?)"?$/);if(m)all.push({url:m[1],slug:m[2].toLowerCase(),b:m[3]});}
-function pick(buckets,slug){let p=all.filter(x=>buckets.includes(x.b));if(slug)p=p.filter(x=>slug.every(t=>x.slug.includes(t)));return p;}
+function pick(buckets,slug,re){let p=all.filter(x=>buckets.includes(x.b));if(slug)p=p.filter(x=>slug.every(t=>x.slug.includes(t)));if(re){const r=new RegExp(re);p=p.filter(x=>r.test(x.slug));}return p;}
+const BEDB2=['Łóżka dziecięce grafika/bajkowe','Łóżka dziecięce klasyczne','Łóżka inne','Łóżka podwójne dziecięce/rozsuwane','Łóżka piętrowe'];
 
 const T=[
  {br:'Pokój dziecka', cats:[
@@ -15,6 +16,9 @@ const T=[
   {n:'Łóżka podwójne',ph:'łóżko podwójne dziecięce',v:2900,b:['Łóżka podwójne dziecięce/rozsuwane','Łóżka tapicerowane/panele'],subs:[{n:'160x200',ph:'łóżko 160x200',v:6600,s:['160x200']},{n:'140x200',ph:'łóżko 140x200',v:5400,s:['140x200']},{n:'z pojemnikiem',ph:'łóżko z pojemnikiem',v:6600,s:['pojemnik']}]},
   {n:'Barierki i stelaże',ph:'barierka do łóżka',v:1000,b:['Barierki/stelaże'],subs:[]},
   {n:'Łóżka domki',ph:'łóżeczko domek',v:9900,b:['Łóżko domek'],subs:[]},
+  {n:'Łóżka samochody / autka',ph:'łóżka samochodowe',v:390,b:BEDB2,re:'auto|samochod|policja|wyscig|traktor',subs:[]},
+  {n:'Łóżka ze zwierzątkami',ph:'łóżko ze zwierzątkiem',v:180,b:BEDB2,re:'jednorozec|kotek|mis-|zajac|sowa|panda|bear|bunny|teddy|cat|spiaca',subs:[]},
+  {n:'Łóżka dla księżniczki',ph:'łóżko księżniczki',v:260,b:BEDB2,re:'ksiezniczk|princess|korona|zamek',subs:[]},
   {n:'Szafy dziecięce',ph:'szafa do pokoju dziecięcego',v:5400,b:['Szafy dziecięce'],subs:[]},
   {n:'Regały na zabawki',ph:'regał na zabawki',v:14800,b:['Regały'],s:['zabawk'],subs:[]},
   {n:'Półki dla dzieci',ph:'półka dla dzieci',v:480,b:['Półki / dla dzieci'],subs:[]},
@@ -84,7 +88,7 @@ for(const [bi,br] of T.entries()){
   nav+=`<button class="navitem" data-bi="${bi}">${esc(br.br)}<svg viewBox="0 0 10 6" class="caret"><path d="M1 1l4 4 4-4"/></svg></button>`;
   let cards='';
   for(const cat of br.cats){
-    const prods=pick(cat.b,cat.s);prods.forEach(p=>{if(!seen.has(p.url)){seen.add(p.url);totalProd++;}});
+    const prods=pick(cat.b,cat.s,cat.re);prods.forEach(p=>{if(!seen.has(p.url)){seen.add(p.url);totalProd++;}});
     const key=br.br+'||'+cat.n;
     DATA[key]={ph:cat.ph,v:cat.v,prods:prods.map(p=>({u:p.url,s:p.slug})),subs:subsFor(cat)};
     cards+=`<button class="mcat" data-key="${esc(key)}"><span class="mn">${esc(cat.n)}</span><span class="mm"><span class="mv">${fmt(cat.v)}/mc</span><span class="mc">${prods.length}</span></span></button>`;

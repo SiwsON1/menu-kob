@@ -16,7 +16,7 @@ const A=[
  // rozmiar lozka
  ['160x80',/160x80/,/160x80/],['140x70',/140x70/,/140x70/],['180x80',/180x80/,/180x80/],['90x200',/90x200|200x90/,/90x200/],['120x200',/120x200/,/120x200/],['140x200',/140x200/,/140x200/],['160x200',/160x200/,/160x200/],['80x160',/80x160/,/80x160/],['80x180',/80x180/,/80x180/],
  // motyw
- ['samochody / autka',/auto|samochod|policja|wyscig/,/auto|samochod/],['traktor',/traktor/,/traktor/],['zwierzątka',/jednorozec|kotek|mis|zajac|sowa|animal|bear|bunny|panda/,/jednorozec|zwierz|kotek|mis/],['księżniczka',/ksiezniczk|princess|korona|zamek/,/ksiezniczk|princess/],['serca',/serc|serduszk/,/serc/],['domek',/domek/,/domek/],['gwiazdki',/gwiazd/,/gwiazd/],
+ ['samochody / autka',/auto|samochod|policja|wyscig/,/auto|samochod/],['traktor',/traktor/,/traktor/],['zwierzątka',/jednorozec|kotek|mis|zajac|sowa|animal|bear|bunny|panda/,/jednorozec|zwierz|kotek|mis/],['księżniczka',/ksiezniczk|princess|korona|zamek/,/ksiezniczk|princess/],['domek',/domek/,/domek/],['gwiazdki',/gwiazd/,/gwiazd/],
  // styl
  ['skandynawskie',/skandynaw|scandi/,/skandynaw/],['loft / industrialne',/loft|industrial|metalow/,/loft|industrial/],['ryflowane',/ryflowan/,/ryflowan/],['glamour',/glamour|velvet/,/glamour/],['nowoczesne',/nowoczesn/,/nowoczesn/],
  // funkcja / ksztalt
